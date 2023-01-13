@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   fractol.h                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: lvan-bus <lvan-bus@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2022/12/07 11:08:22 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/01/13 17:33:14 by lvan-bus      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FRACTOL_H
+# define FRACTOL_H
+
+// INCLUDE
+# include <stdlib.h>
+# include <limits.h>
+# include <unistd.h>
+# include <stdarg.h>
+# include "./ft_printf/ft_printf.h"
+# include "./libft/libft.h"
+# include "./MLX42/include/MLX42/MLX42.h"
+
+// DEFINE
+// # define WIDTH 500
+// # define HEIGHT 500
+
+// STRUCTURES
+
+
+// FUNCTIONS
+
+
+#endif
