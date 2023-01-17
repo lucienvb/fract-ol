@@ -6,7 +6,7 @@
 #    By: lvan-bus <lvan-bus@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2023/01/12 16:36:24 by lvan-bus      #+#    #+#                  #
-#    Updated: 2023/01/13 17:34:58 by lvan-bus      ########   odam.nl          #
+#    Updated: 2023/01/17 16:54:19 by lvan-bus      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,10 @@ LDFLAGS	?= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 #LDFLAGS	?= -fsanitize=address -g
 
 SRC		:= \
-		src/mandelbrot.c
-
+		src/mandelbrot.c \
+		src/julia_set.c \
+		src/test_main.c
 #src/main.c
-#src/test_main.c
 
 OBJ		:= $(SRC:.c=.o)
 

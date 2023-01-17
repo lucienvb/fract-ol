@@ -6,7 +6,7 @@
 /*   By: lvan-bus <lvan-bus@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/12/07 11:08:22 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2023/01/13 17:33:14 by lvan-bus      ########   odam.nl         */
+/*   Updated: 2023/01/17 13:05:32 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@
 
 // STRUCTURES
 
+// MAIN FUNCTION
 
-// FUNCTIONS
-
+// FUNCTIONS -- MANDELBROT & JULIA
+void	mandelbrot(void);
+void	julia_set(void);
 
 #endif

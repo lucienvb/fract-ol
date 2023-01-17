@@ -1,5 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: lvan-bus <lvan-bus@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/01/17 13:07:17 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/01/17 16:53:56 by lvan-bus      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fractol.h"
 #include <string.h>
+//#include <stdio.h>
 
 /*mlx_image_t	*g_img1;
 mlx_image_t	*g_img2;
@@ -13,50 +26,16 @@ void	hook(void *param)
 		mlx_close_window(mlx);
 }*/
 
-void	mandelbrot(int c)
+/*int	main(int argc, char **argv)
 {
-	long long	z;
-	int	i;
-
-	z = 0;
-	i = 0;
-	while ((z < INT_MAX && z > INT_MIN) || i < 10)
-	{
-		z = z * z + c;
-		ft_printf("z%i: %i\n", i, z);
-		i++;
-	}
-}
-
-#include <stdio.h>
-int	main(int argc, char **argv)
-{
-	float	z;
-	float	c;
-	int		i;
-
-	z = 0;
-	i = 0;
 	if (argc != 2)
 		return (0);
-	c = atof(argv[1]);
-	// mandelbrot(c);
-	
-	// while (c < 2.5)
-	// {
-	while (i < 10)
-	{
-		printf("%f\n", z);
-		z = z * z + c;
-		i++;
-	}
-		// if (z > 100000)
-		// write(1, " ", 1);
-
-
-
+	if (ft_strncmp(argv[1], "Mandelbrot", 10) == 0)
+		mandelbrot();
+	else if (ft_strncmp(argv[1], "Julia", 5) == 0)
+		julia_set();
 	return (0);
-}
+}*/
 
 /*int	main(void)
 {
