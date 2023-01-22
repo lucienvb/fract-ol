@@ -1,36 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strdup.c                                        :+:    :+:            */
+/*   list_last.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/03 14:54:59 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/12/08 14:57:58 by lvan-bus      ########   odam.nl         */
+/*   Created: 2023/01/19 11:59:58 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/01/19 12:00:00 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdlib.h>
-#include "libft.h"
+#include "../libft.h"
 
-char	*ft_strdup(const char *s1)
+t_node	*list_last(t_node *stack)
 {
-	static char	*dup;
-	char		*temp;
-	int			strsize;
-
-	strsize = ft_strlen(s1) + 1;
-	dup = malloc(strsize * sizeof(char));
-	if (!dup)
-		return (0);
-	temp = dup;
-	while (*s1)
-	{
-		*temp = *s1;
-		temp++;
-		s1++;
-	}
-	*temp = '\0';
-	return (dup);
+	while (stack->next != NULL)
+		stack = stack->next;
+	return (stack);
 }

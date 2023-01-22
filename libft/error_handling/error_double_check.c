@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strnstr.c                                       :+:    :+:            */
+/*   error_double_check.c                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/03 14:58:25 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/12/08 14:58:22 by lvan-bus      ########   odam.nl         */
+/*   Created: 2023/01/19 11:58:43 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/01/20 15:35:17 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include "libft.h"
+#include "../libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+size_t	error_double_check(char **argv)
 {
 	size_t	i;
 	size_t	j;
-	size_t	lne;
 
-	if (!haystack && !needle)
-		return (NULL);
-	i = 0;
-	lne = ft_strlen(needle);
-	if (lne == 0)
-		return ((char *)haystack);
-	if (ft_strlen(haystack) == 0)
-		return (NULL);
-	while (haystack[i])
+	i = 1;
+	while (argv[i])
 	{
-		j = 0;
-		while (haystack[i + j] == needle[j] && j < lne && i + j < len)
+		j = i + 1;
+		while (argv[j])
+		{
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+				return (0);
 			j++;
-		if (j == lne)
-			return ((char *)&haystack[i]);
+		}
 		i++;
 	}
-	return (NULL);
+	return (1);
 }

@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_atoi.c                                          :+:    :+:            */
+/*   list_sorted.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/03 14:42:23 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/12/08 14:53:58 by lvan-bus      ########   odam.nl         */
+/*   Created: 2023/01/19 12:00:29 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/01/19 12:00:31 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-long long	ft_atoi(const char *str)
-{
-	int			i;
-	int			sign;
-	long long	result;
+#include "../libft.h"
 
-	sign = 1;
-	i = 0;
-	result = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+int	list_sorted(t_node *stack)
+{
+	t_node	*head;
+
+	head = stack;
+	if (!stack)
+		return (0);
+	while (stack->next != NULL)
 	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}	
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
+		if (stack->content > stack->next->content)
+			return (0);
+		stack = stack->next;
 	}
-	return (result * sign);
+	stack = head;
+	return (1);
 }

@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putnbr_fd.c                                     :+:    :+:            */
+/*   error_limit_check.c                                :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/03 14:47:03 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/12/08 14:57:47 by lvan-bus      ########   odam.nl         */
+/*   Created: 2023/01/19 11:58:53 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/01/20 15:30:44 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft.h"
+#include "../libft.h"
+#include "stdio.h"
 
-void	ft_putnbr_fd(int n, int fd)
+size_t	error_limit_check(char **argv)
 {
-	char	c;
+	int		num;
+	size_t	i;
 
-	if (n == -2147483648)
-		write(fd, "-2147483648", 11);
-	if (n < 0 && n != -2147483648)
+	i = 0;
+	while (argv[i])
 	{
-		write(fd, "-", 1);
-		n = n * -1;
+		if (ft_atoi_with_overflow(argv[i], &num) == 0)
+		{
+			ft_printf("Error");
+			exit(0);
+		}
+		if (num < INT_MIN || num > INT_MAX)
+			return (0);
+		i++;
 	}
-	if (n >= 0 && n < 10)
-	{
-		c = n + '0';
-		write(fd, &c, 1);
-	}
-	if (n >= 10)
-	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
-	}
+	return (error_double_check(argv));
 }

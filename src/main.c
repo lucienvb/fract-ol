@@ -26,7 +26,7 @@ void	hook(void *param)
 		mlx_close_window(mlx);
 }*/
 
-/*int	main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	if (argc != 2)
 		return (0);
@@ -35,7 +35,7 @@ void	hook(void *param)
 	else if (ft_strncmp(argv[1], "Julia", 5) == 0)
 		julia_set();
 	return (0);
-}*/
+}
 
 /*int	main(void)
 {

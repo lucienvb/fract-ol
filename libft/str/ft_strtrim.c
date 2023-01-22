@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "libft.h"
+#include "../libft.h"
 
 static char	*trim(char const *s1, size_t start, size_t end)
 {

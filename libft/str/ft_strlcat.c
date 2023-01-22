@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strmapi.c                                       :+:    :+:            */
+/*   ft_strlcat.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/03 14:57:13 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2023/01/09 10:30:52 by lvan-bus      ########   odam.nl         */
+/*   Created: 2022/10/03 14:55:42 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2022/12/08 14:55:03 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include "libft.h"
+#include "../libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	unsigned int	i;
-	char			*str;
+	size_t	i;
+	size_t	count;
+	size_t	len_dst;
+	size_t	len_src;
 
+	len_dst = ft_strlen(dst);
+	len_src = ft_strlen(src);
+	count = 0;
 	i = 0;
-	if (!s)
-		return (0);
-	str = ft_calloc((ft_strlen(s) + 1), sizeof(char));
-	if (str == 0)
-		return (0);
-	while (s[i])
-	{
-		str[i] = f(i, s[i]);
+	if (len_dst >= dstsize)
+		return (len_src + dstsize);
+	while (dst[i] && i < (dstsize - 1))
 		i++;
+	while (src[count] && i < (dstsize - 1))
+	{
+		dst[i] = src[count];
+		i++;
+		count++;
 	}
-	return (str);
+	dst[i] = '\0';
+	return (len_dst + len_src);
 }

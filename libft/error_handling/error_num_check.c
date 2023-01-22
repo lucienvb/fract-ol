@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_isalnum.c                                       :+:    :+:            */
+/*   error_num_check.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/03 14:42:56 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/12/08 14:57:16 by lvan-bus      ########   odam.nl         */
+/*   Created: 2023/01/19 11:59:06 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/01/19 11:59:08 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../libft.h"
 
-int	ft_isalnum(int c)
+size_t	error_num_check(char *str)
 {
-	return (ft_isdigit(c) || ft_isalpha(c));
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[0] == '-' && str[i] == '-')
+			i++;
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }

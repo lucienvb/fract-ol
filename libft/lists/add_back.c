@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_bzero.c                                         :+:    :+:            */
+/*   add_back.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/03 14:42:34 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/12/08 14:57:07 by lvan-bus      ########   odam.nl         */
+/*   Created: 2023/01/19 11:59:41 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/01/19 11:59:42 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdio.h>
-#include <strings.h>
-#include <unistd.h>
-#include "libft.h"
+#include "../libft.h"
 
-void	ft_bzero(void *s, size_t n)
+int	add_back(t_node **head, int content)
 {
-	char	*str;
+	t_node	*current;
 
-	str = s;
-	while (n > 0)
-	{
-		*str = '\0';
-		str++;
-		n--;
-	}
+	current = *head;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = (t_node *) malloc(sizeof(t_node));
+	if (!current->next)
+		return (0);
+	current->next->content = content;
+	current->next->next = NULL;
+	(*head)->size++;
+	return (1);
 }

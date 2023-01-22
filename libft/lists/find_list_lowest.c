@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strlcpy.c                                       :+:    :+:            */
+/*   find_list_lowest.c                                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/03 14:55:54 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/12/08 14:58:12 by lvan-bus      ########   odam.nl         */
+/*   Created: 2023/01/19 11:59:49 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/01/19 11:59:50 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
-#include "libft.h"
+#include "../libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+int	find_list_lowest(t_node **stack, int low)
 {
-	size_t	i;
-	size_t	len;
+	t_node	*head;
 
-	i = 0;
-	len = ft_strlen(src);
-	if (dstsize == 0)
-		return (len);
-	while (src[i] && i < (dstsize - 1))
+	head = *stack;
+	while (*stack && (*stack)->next)
 	{
-		dst[i] = src[i];
-		i++;
+		if ((*stack)->next->content < low)
+			low = (*stack)->next->content;
+		*stack = (*stack)->next;
 	}
-	dst[i] = '\0';
-	return (len);
+	*stack = head;
+	return (low);
 }

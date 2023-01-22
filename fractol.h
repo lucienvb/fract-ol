@@ -18,7 +18,6 @@
 # include <limits.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include "./ft_printf/ft_printf.h"
 # include "./libft/libft.h"
 # include "./MLX42/include/MLX42/MLX42.h"
 

@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "libft.h"
+#include "../libft.h"
 
 static int	numlen(long n)
 {

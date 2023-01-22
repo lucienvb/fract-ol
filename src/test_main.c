@@ -18,7 +18,7 @@
 // #define WIDTH 500
 // #define HEIGHT 500
 
-mlx_image_t	*g_img;
+/*mlx_image_t	*g_img;
 
 void	hook(void *param)
 {
@@ -51,4 +51,4 @@ int32_t	main(void)
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 	return (EXIT_SUCCESS);
-}
+}*/

@@ -1,19 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_putstr_fd.c                                     :+:    :+:            */
+/*   ft_atoi.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2022/10/03 14:47:29 by lvan-bus      #+#    #+#                 */
-/*   Updated: 2022/12/08 14:57:49 by lvan-bus      ########   odam.nl         */
+/*   Created: 2022/10/03 14:42:23 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/01/20 15:28:00 by lvan-bus      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "libft.h"
-
-void	ft_putstr_fd(char *s, int fd)
+int	ft_atoi(const char *str)
 {
-	write(fd, s, ft_strlen(s));
+	int	i;
+	int	sign;
+	int	result;
+
+	sign = 1;
+	i = 0;
+	result = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + str[i] - '0';
+		i++;
+	}
+	return (result * sign);
 }
