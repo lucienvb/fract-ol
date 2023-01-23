@@ -30,7 +30,9 @@
 // MAIN FUNCTION
 
 // FUNCTIONS -- MANDELBROT & JULIA
-void	mandelbrot(void);
-void	julia_set(void);
+//void	mandelbrot(void);
+void	mandelbrot(mlx_image_t *g_img);
+//void	julia_set(void);
+void	julia_set(mlx_image_t *g_img);
 
 #endif

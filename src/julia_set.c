@@ -14,8 +14,8 @@
 #include <math.h>
 #include "../fractol.h"
 
-#define WIDTH 80
-#define HEIGHT 60
+#define WIDTH 1080
+#define HEIGHT 720
 #define MAX_ITERATIONS 100
 #define THRESHOLD 4.0
 
@@ -43,7 +43,7 @@ static int	iteration_new(int x, int y, int iteration)
 	return (iteration);
 }
 
-static void	fix_x_axis(int y)
+static void	fix_x_axis(int y, mlx_image_t *g_img)
 {
 	int	x;
 	int	iteration;
@@ -52,23 +52,22 @@ static void	fix_x_axis(int y)
 	while (x < WIDTH)
 	{
 		iteration = iteration_new(x, y, iteration);
-		if (iteration == MAX_ITERATIONS)
-			ft_printf("*");
-		else
-			ft_printf(" ");
+		if (iteration != MAX_ITERATIONS)
+		{
+			mlx_put_pixel(g_img, x, y,0xFFFFFFFF); // Single white pixel in the middle.
+		}
 		x++;
 	}
 }
 
-void	julia_set(void)
+void	julia_set(mlx_image_t *g_img)
 {
 	int	y;
 
 	y = 0;
 	while (y < HEIGHT)
 	{
-		fix_x_axis(y);
-		ft_printf("\n");
+		fix_x_axis(y, g_img);
 		y++;
 	}
 }

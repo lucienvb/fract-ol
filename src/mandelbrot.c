@@ -14,13 +14,13 @@
 #include <stdlib.h>
 #include "../fractol.h"
 
-#define WIDTH 50
-#define HEIGHT 50
+#define WIDTH 1080
+#define HEIGHT 720
 #define MIN_X -2.0
 #define MAX_X 1.0
 #define MIN_Y -1.5
 #define MAX_Y 1.5
-#define MAX_ITERATIONS 100
+#define MAX_ITERATIONS 1000
 #define THRESHOLD 4.0
 
 static int	iterations_new(int iterations, double c_real, double c_imag)
@@ -45,7 +45,7 @@ static int	iterations_new(int iterations, double c_real, double c_imag)
 	return (iterations);
 }
 
-static void	fix_x_axis(double x_step, double y_step, int y)
+static void	fix_x_axis(double x_step, double y_step, int y, mlx_image_t *g_img)
 {
 	double	c_real;
 	double	c_imag;
@@ -58,17 +58,13 @@ static void	fix_x_axis(double x_step, double y_step, int y)
 		c_real = MIN_X + x * x_step;
 		c_imag = MIN_Y + y * y_step;
 		iterations = iterations_new(iterations, c_real, c_imag);
-		if (iterations == MAX_ITERATIONS)
-			putchar('*');
-		// if (iterations >= (MAX_ITERATIONS / 8) && iterations < MAX_ITERATIONS)
-		// 	putchar('~');
-		else
-			putchar(' ');
+		if (iterations != MAX_ITERATIONS)
+			mlx_put_pixel(g_img, x, y,0xFFFFFFFF); // Single white pixel in the middle.
 		x++;
 	}
 }
-
-void	mandelbrot(void)
+//void	mandelbrot(void)
+void	mandelbrot(mlx_image_t *g_img)
 {
 	double	x_step;
 	double	y_step;
@@ -79,8 +75,7 @@ void	mandelbrot(void)
 	y = 0;
 	while (y < HEIGHT)
 	{
-		fix_x_axis(x_step, y_step, y);
-		putchar('\n');
+		fix_x_axis(x_step, y_step, y, g_img);
 		y++;
 	}
 }

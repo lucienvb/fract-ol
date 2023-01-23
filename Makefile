@@ -23,7 +23,8 @@ LDFLAGS	?= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
 SRC		:= \
 		src/main.c \
 		src/julia_set.c \
-		src/mandelbrot.c
+		src/mandelbrot.c \
+		src/test_mlx.c
 
 #src/test_main.c
 
@@ -64,7 +65,5 @@ LIST_TEST := \
 test:
 		$(CC) $(CFLAGS) UnityExample.c $(LIST_TEST) unity/libunity.a -o unittest
 		@ ./unittest
-
-#$(CC) $(CFLAGS) UnityExample.c libft/lists/list_reversed_sorted.o libft/convert/ft_atoi_with_overflow.o libft/error_handling/error_double_check.o libft/convert/ft_atoi.o unity/libunity.a -o unittest
 
 .PHONY: all clean fclean re
