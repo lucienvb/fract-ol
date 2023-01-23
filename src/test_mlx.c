@@ -8,7 +8,26 @@
 
 static mlx_image_t *g_img;
 
-int32_t	fractol(int choice)
+static void	hook(void *param)
+//static void	hook(mlx_t *mlx)
+{
+	mlx_t	*mlx;
+
+	mlx = param;
+	 if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+	 	mlx_close_window(mlx);
+//	if (mlx_is_key_down(mlx, MLX_KEY_UP))
+//		g_img->instances[0].y -= 5;
+//	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
+//		g_img->instances[0].y += 5;
+//	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
+//		g_img->instances[0].x -= 5;
+//	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+//		g_img->instances[0].x += 5;
+}
+
+//static int32_t	fractol(int choice, mlx_image_t *g_img)
+static int32_t	fractol(int choice, int set)
 {
 	mlx_t	*mlx;
 
@@ -20,7 +39,9 @@ int32_t	fractol(int choice)
 	if (choice)
 		mandelbrot(g_img);
 	else
-		julia_set(g_img);
+		julia_set(g_img, set);
+	mlx_loop_hook(mlx, &hook, mlx);
+	//mlx_update_matrix(mlx, WIDTH, HEIGHT);
 	mlx_loop(mlx);
 	mlx_delete_image(mlx, g_img); // Once the application request an exit, cleanup.
 	mlx_terminate(mlx);
@@ -29,11 +50,14 @@ int32_t	fractol(int choice)
 
 int	main(int argc, char **argv)
 {
-	if (argc != 2)
+	//static mlx_image_t *g_img;
+	if (argc != 3)
 		return (0);
 	if (ft_strncmp(argv[1], "Mandelbrot", 10) == 0)
-		fractol(1);
+		fractol(1, ft_atoi(argv[2]));
+		//fractol(1, g_img);
 	else if (ft_strncmp(argv[1], "Julia", 5) == 0)
-		fractol(0);
+		fractol(0, ft_atoi(argv[2]));
+		//fractol(0, g_img);
 	return (0);
 }

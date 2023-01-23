@@ -19,7 +19,41 @@
 #define MAX_ITERATIONS 100
 #define THRESHOLD 4.0
 
-static int	iteration_new(int x, int y, int iteration)
+static double set_real(double c, int set)
+{
+	if (set == 1)
+		c = -0.79;
+	else if (set == 2)
+		c = -0.162;
+	else if (set == 3)
+		c = -0.3;
+	else if (set == 4)
+		c = -1.476;
+	else if (set == 5)
+		c = -0.12;
+	else
+		c = 0.28;
+	return (c);
+}
+
+static double set_imag(double c, int set)
+{
+	if (set == 1)
+		c = 0.156;
+	else if (set == 2)
+		c = 1.04;
+	else if (set == 3)
+		c = -0.01;
+	else if (set == 4)
+		c = 0;
+	else if (set == 5)
+		c = -0.77;
+	else
+		c = 0.008;
+	return (c);
+}
+
+static int	iterations_new(int x, int y, int iterations, int set)
 {
 	double	c_real;
 	double	c_imag;
@@ -27,47 +61,46 @@ static int	iteration_new(int x, int y, int iteration)
 	double	z_imag;
 	double	z_real_temp;
 
-	c_real = -0.8;
-	c_imag = 0.156;
+	c_real = 0.0;
+	c_imag = 0.0;
+	c_real = set_real(c_real, set);
+	c_imag = set_imag(c_imag, set);
 	z_real = ((double)x / WIDTH) * 4 - 2;
-	z_imag = ((double)y / HEIGHT) * 4;
-	iteration = 0;
-	while (iteration < MAX_ITERATIONS
+	z_imag = ((double)y / HEIGHT) * 4 - 2;
+	iterations = 0;
+	while (iterations < MAX_ITERATIONS
 		&& z_real * z_real + z_imag * z_imag < THRESHOLD)
 	{
 		z_real_temp = z_real * z_real - z_imag * z_imag + c_real;
 		z_imag = 2 * z_real * z_imag + c_imag;
 		z_real = z_real_temp;
-		iteration++;
+		iterations++;
 	}
-	return (iteration);
+	return (iterations);
 }
 
-static void	fix_x_axis(int y, mlx_image_t *g_img)
+static void	fix_x_axis(int y, mlx_image_t *g_img, int set)
 {
 	int	x;
-	int	iteration;
+	int	iterations;
 
 	x = 0;
 	while (x < WIDTH)
 	{
-		iteration = iteration_new(x, y, iteration);
-		if (iteration != MAX_ITERATIONS)
-		{
-			mlx_put_pixel(g_img, x, y,0xFFFFFFFF); // Single white pixel in the middle.
-		}
+		iterations = iterations_new(x, y, iterations, set);
+		give_color(g_img, x, y, iterations);
 		x++;
 	}
 }
 
-void	julia_set(mlx_image_t *g_img)
+void	julia_set(mlx_image_t *g_img, int set)
 {
 	int	y;
 
 	y = 0;
 	while (y < HEIGHT)
 	{
-		fix_x_axis(y, g_img);
+		fix_x_axis(y, g_img, set);
 		y++;
 	}
 }

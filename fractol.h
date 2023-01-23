@@ -32,7 +32,8 @@
 // FUNCTIONS -- MANDELBROT & JULIA
 //void	mandelbrot(void);
 void	mandelbrot(mlx_image_t *g_img);
+void	give_color(mlx_image_t *g_img, int x, int y, int iterations);
 //void	julia_set(void);
-void	julia_set(mlx_image_t *g_img);
+void	julia_set(mlx_image_t *g_img, int set);
 
 #endif

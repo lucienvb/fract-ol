@@ -20,8 +20,25 @@
 #define MAX_X 1.0
 #define MIN_Y -1.5
 #define MAX_Y 1.5
-#define MAX_ITERATIONS 1000
+#define MAX_ITERATIONS 100
 #define THRESHOLD 4.0
+
+void	give_color(mlx_image_t *g_img, int x, int y, int iterations)
+{
+	if (iterations == MAX_ITERATIONS)
+		mlx_put_pixel(g_img, x, y, 0x000000);
+	else if (iterations > (0.8 * MAX_ITERATIONS) && iterations < MAX_ITERATIONS)
+		mlx_put_pixel(g_img, x, y, 0xADD8E6);
+	else if (iterations > (0.6 * MAX_ITERATIONS) && iterations < (0.8 * MAX_ITERATIONS))
+		mlx_put_pixel(g_img, x, y, 0x057F95);
+	else if (iterations > (0.4 * MAX_ITERATIONS) && iterations < (0.6 * MAX_ITERATIONS))
+		mlx_put_pixel(g_img, x, y, 0x40E0D0);
+	else if (iterations > (0.2 * MAX_ITERATIONS) && iterations < (0.4 * MAX_ITERATIONS))
+		mlx_put_pixel(g_img, x, y, 0xC2DFFF);
+//	else if (iterations >= 0 && iterations < (0.2 * MAX_ITERATIONS))
+	else
+		mlx_put_pixel(g_img, x, y, 0xc1edfe);
+}
 
 static int	iterations_new(int iterations, double c_real, double c_imag)
 {
@@ -58,8 +75,7 @@ static void	fix_x_axis(double x_step, double y_step, int y, mlx_image_t *g_img)
 		c_real = MIN_X + x * x_step;
 		c_imag = MIN_Y + y * y_step;
 		iterations = iterations_new(iterations, c_real, c_imag);
-		if (iterations != MAX_ITERATIONS)
-			mlx_put_pixel(g_img, x, y,0xFFFFFFFF); // Single white pixel in the middle.
+		give_color(g_img, x, y, iterations);
 		x++;
 	}
 }
