@@ -17,7 +17,7 @@
 NAME	:= fractol
 CC		:= cc
 CFLAGS	?= -Wall -Wextra -Werror
-LDFLAGS	?= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit
+LDFLAGS	?= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -fast
 #LDFLAGS	?= -fsanitize=address -g
 
 SRC		:= \

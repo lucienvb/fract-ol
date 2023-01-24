@@ -14,11 +14,6 @@
 #include <math.h>
 #include "../fractol.h"
 
-#define WIDTH 1080
-#define HEIGHT 720
-#define MAX_ITERATIONS 100
-#define THRESHOLD 4.0
-
 static double set_real(double c, int set)
 {
 	if (set == 1)

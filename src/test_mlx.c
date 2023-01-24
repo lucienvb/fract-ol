@@ -1,32 +1,18 @@
 #include "../fractol.h"
 
 #include <stdio.h>
-#define WIDTH 1080
-#define HEIGHT 720
-//#define WIDTH 80
-//#define HEIGHT 60
 
 static mlx_image_t *g_img;
 
 static void	hook(void *param)
-//static void	hook(mlx_t *mlx)
 {
 	mlx_t	*mlx;
 
 	mlx = param;
 	 if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 	 	mlx_close_window(mlx);
-//	if (mlx_is_key_down(mlx, MLX_KEY_UP))
-//		g_img->instances[0].y -= 5;
-//	if (mlx_is_key_down(mlx, MLX_KEY_DOWN))
-//		g_img->instances[0].y += 5;
-//	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
-//		g_img->instances[0].x -= 5;
-//	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-//		g_img->instances[0].x += 5;
 }
 
-//static int32_t	fractol(int choice, mlx_image_t *g_img)
 static int32_t	fractol(int choice, int set)
 {
 	mlx_t	*mlx;
@@ -61,3 +47,34 @@ int	main(int argc, char **argv)
 		//fractol(0, g_img);
 	return (0);
 }
+
+//#include <stdlib.h>
+//
+//void my_scrollhook(double xdelta, double ydelta, void* param)
+//{
+//	(void)param;
+//	// Simple up or down detection.
+//	if (ydelta > 0)
+//		puts("Up!");
+//	else if (ydelta < 0)
+//		puts("Down!");
+//
+//	// Can also detect a mousewheel that go along the X (e.g: MX Master 3)
+//	if (xdelta < 0)
+//		puts("Sliiiide to the left!");
+//	else if (xdelta > 0)
+//		puts("Sliiiide to the right!");
+//}
+//
+//int32_t	main(void)
+//{
+//	mlx_t* mlx;
+//
+//	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
+//		return (EXIT_FAILURE);
+//
+//	mlx_scroll_hook(mlx, &my_scrollhook, NULL);
+//	mlx_loop(mlx);
+//	mlx_terminate(mlx);
+//	return (EXIT_SUCCESS);
+//}

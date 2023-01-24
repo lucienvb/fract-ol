@@ -14,15 +14,6 @@
 #include <stdlib.h>
 #include "../fractol.h"
 
-#define WIDTH 1080
-#define HEIGHT 720
-#define MIN_X -2.0
-#define MAX_X 1.0
-#define MIN_Y -1.5
-#define MAX_Y 1.5
-#define MAX_ITERATIONS 100
-#define THRESHOLD 4.0
-
 void	give_color(mlx_image_t *g_img, int x, int y, int iterations)
 {
 	if (iterations == MAX_ITERATIONS)
@@ -37,7 +28,9 @@ void	give_color(mlx_image_t *g_img, int x, int y, int iterations)
 		mlx_put_pixel(g_img, x, y, 0xC2DFFF);
 //	else if (iterations >= 0 && iterations < (0.2 * MAX_ITERATIONS))
 	else
-		mlx_put_pixel(g_img, x, y, 0xc1edfe);
+		mlx_put_pixel(g_img, x, y, 0xFDD31D);
+	//0xc1edfe
+	//0xe8e337
 }
 
 static int	iterations_new(int iterations, double c_real, double c_imag)
@@ -55,8 +48,10 @@ static int	iterations_new(int iterations, double c_real, double c_imag)
 	{
 		z_real_new = z_real * z_real - z_imag * z_imag + c_real;
 		z_imag_new = 2 * z_real * z_imag + c_imag;
-		z_real = z_real_new;
-		z_imag = z_imag_new;
+//		z_real = z_real_new;
+//		z_imag = z_imag_new;
+		z_real = z_real_new * 0.5 + 1;
+		z_imag = z_imag_new * 0.5 + 1;
 		iterations++;
 	}
 	return (iterations);

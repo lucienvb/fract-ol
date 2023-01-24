@@ -22,8 +22,14 @@
 # include "./MLX42/include/MLX42/MLX42.h"
 
 // DEFINE
-// # define WIDTH 500
-// # define HEIGHT 500
+#define WIDTH 1080
+#define HEIGHT 720
+#define MIN_X -2.0
+#define MAX_X 1.0
+#define MIN_Y -1.5
+#define MAX_Y 1.5
+#define MAX_ITERATIONS 100
+#define THRESHOLD 4.0
 
 // STRUCTURES
 
