@@ -22,14 +22,15 @@
 # include "./MLX42/include/MLX42/MLX42.h"
 
 // DEFINE
-#define WIDTH 1080
-#define HEIGHT 720
-#define MIN_X -2.0
-#define MAX_X 1.0
-#define MIN_Y -1.5
-#define MAX_Y 1.5
-#define MAX_ITERATIONS 100
-#define THRESHOLD 4.0
+# define WIDTH 1080
+# define HEIGHT 720
+# define MIN_X -2.0
+# define MAX_X 1.0
+# define MIN_Y -1.5
+# define MAX_Y 1.5
+# define MAX_ITERATIONS 40
+//# define MAX_ITERATIONS 100
+# define THRESHOLD 4.0
 
 // STRUCTURES
 
@@ -37,7 +38,7 @@
 
 // FUNCTIONS -- MANDELBROT & JULIA
 //void	mandelbrot(void);
-void	mandelbrot(mlx_image_t *g_img);
+void	mandelbrot(mlx_image_t *g_img, mlx_t *mlx);
 void	give_color(mlx_image_t *g_img, int x, int y, int iterations);
 //void	julia_set(void);
 void	julia_set(mlx_image_t *g_img, int set);

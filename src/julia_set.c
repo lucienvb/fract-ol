@@ -14,7 +14,7 @@
 #include <math.h>
 #include "../fractol.h"
 
-static double set_real(double c, int set)
+static double	set_real(double c, int set)
 {
 	if (set == 1)
 		c = -0.79;
@@ -31,7 +31,7 @@ static double set_real(double c, int set)
 	return (c);
 }
 
-static double set_imag(double c, int set)
+static double	set_imag(double c, int set)
 {
 	if (set == 1)
 		c = 0.156;
@@ -50,27 +50,39 @@ static double set_imag(double c, int set)
 
 static int	iterations_new(int x, int y, int iterations, int set)
 {
-	double	c_real;
-	double	c_imag;
-	double	z_real;
-	double	z_imag;
-	double	z_real_temp;
+	double c_real;
+	double c_imag;
+	double z_real;
+	double z_imag;
+	double z_real_tmp;
+	//double z_imag_tmp;
 
 	c_real = 0.0;
 	c_imag = 0.0;
 	c_real = set_real(c_real, set);
 	c_imag = set_imag(c_imag, set);
-	z_real = ((double)x / WIDTH) * 4 - 2;
-	z_imag = ((double)y / HEIGHT) * 4 - 2;
+	z_real = ((double) x / WIDTH) * 4 - 2;
+	z_imag = ((double) y / HEIGHT) * 4 - 2;
 	iterations = 0;
 	while (iterations < MAX_ITERATIONS
-		&& z_real * z_real + z_imag * z_imag < THRESHOLD)
+		&& (z_real * z_real + z_imag * z_imag) <= THRESHOLD)
 	{
-		z_real_temp = z_real * z_real - z_imag * z_imag + c_real;
+		z_real_tmp = z_real * z_real - z_imag * z_imag + c_real;
 		z_imag = 2 * z_real * z_imag + c_imag;
-		z_real = z_real_temp;
+		z_real = z_real_tmp;
 		iterations++;
 	}
+//	optimized escape tim algorithm (less multiplications), now only working with the Mandelbrot set
+
+//	while (iterations < MAX_ITERATIONS
+//		   && (z_real + z_imag) <= THRESHOLD)
+//	{
+//		z_imag_tmp = 2 * z_real_tmp * z_imag_tmp + c_imag;
+//		z_real_tmp = z_real - z_imag + c_real;
+//		z_real = z_real_tmp * z_real_tmp;
+//		z_imag = z_imag_tmp * z_imag_tmp;
+//		iterations++;
+//	}
 	return (iterations);
 }
 
