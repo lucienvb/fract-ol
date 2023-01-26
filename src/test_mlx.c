@@ -2,8 +2,6 @@
 
 #include <stdio.h>
 
-static mlx_image_t *g_img;
-
 static void	hook(void *param)
 {
 	mlx_t	*mlx;
@@ -15,28 +13,27 @@ static void	hook(void *param)
 
 static int32_t	fractol(int choice, int set)
 {
-	mlx_t	*mlx;
+	t_vars	vars;
 
-	mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
-	if (!mlx)
+	vars.mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true);
+	if (!vars.mlx)
 		exit(EXIT_FAILURE);
-	g_img = mlx_new_image(mlx, 1080, 720);    // Creates a new image.
-	mlx_image_to_window(mlx, g_img, 0, 0);   // Adds an image to the render queue.
+	vars.img = mlx_new_image(vars.mlx, 1080, 720);    // Creates a new image.
+	mlx_image_to_window(vars.mlx, vars.img, 0, 0);   // Adds an image to the render queue.
 	if (choice)
-		mandelbrot(g_img, mlx);
+		mandelbrot(vars.img);
 	else
-		julia_set(g_img, set);
-	mlx_loop_hook(mlx, &hook, mlx);
+		julia_set(vars.img, set);
+	mlx_loop_hook(vars.mlx, &hook, vars.mlx);
 	//mlx_update_matrix(mlx, WIDTH, HEIGHT);
-	mlx_loop(mlx);
-	mlx_delete_image(mlx, g_img); // Once the application request an exit, cleanup.
-	mlx_terminate(mlx);
+	mlx_loop(vars.mlx);
+	mlx_delete_image(vars.mlx, vars.img); // Once the application request an exit, cleanup.
+	mlx_terminate(vars.mlx);
 	return (EXIT_SUCCESS);
 }
 
 int	main(int argc, char **argv)
 {
-	//static mlx_image_t *g_img;
 	if (argc != 3)
 		return (0);
 	if (ft_strncmp(argv[1], "mandelbrot", 10) == 0)
@@ -47,34 +44,3 @@ int	main(int argc, char **argv)
 		//fractol(0, g_img);
 	return (0);
 }
-
-//#include <stdlib.h>
-//
-//void my_scrollhook(double xdelta, double ydelta, void* param)
-//{
-//	(void)param;
-//	// Simple up or down detection.
-//	if (ydelta > 0)
-//		puts("Up!");
-//	else if (ydelta < 0)
-//		puts("Down!");
-//
-//	// Can also detect a mousewheel that go along the X (e.g: MX Master 3)
-//	if (xdelta < 0)
-//		puts("Sliiiide to the left!");
-//	else if (xdelta > 0)
-//		puts("Sliiiide to the right!");
-//}
-//
-//int32_t	main(void)
-//{
-//	mlx_t* mlx;
-//
-//	if (!(mlx = mlx_init(WIDTH, HEIGHT, "MLX42", true)))
-//		return (EXIT_FAILURE);
-//
-//	mlx_scroll_hook(mlx, &my_scrollhook, NULL);
-//	mlx_loop(mlx);
-//	mlx_terminate(mlx);
-//	return (EXIT_SUCCESS);
-//}

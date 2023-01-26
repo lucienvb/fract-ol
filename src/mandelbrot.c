@@ -57,14 +57,14 @@ static int	iterations_new(int iterations, double c_real, double c_imag)
 	return (iterations);
 }
 
-static void	fix_x_axis(double x_step, double y_step, int y, int x, mlx_image_t *g_img)
+static void	fix_x_axis(double x_step, double y_step, int y, mlx_image_t *g_img)
 {
 	double	c_real;
 	double	c_imag;
-//	int		x;
+	int		x;
 	int		iterations;
 
-//	x = 0;
+	x = 0;
 	while (x < WIDTH)
 	{
 		c_real = MIN_X + x * x_step;
@@ -74,22 +74,22 @@ static void	fix_x_axis(double x_step, double y_step, int y, int x, mlx_image_t *
 		x++;
 	}
 }
-//void	mandelbrot(void)
-void	mandelbrot(mlx_image_t *g_img, mlx_t *mlx)
+
+void	mandelbrot(mlx_image_t *g_img)
 {
 	double	x_step;
 	double	y_step;
 	int		y = 0;
-	int 	x = 0;
+//	int 	x = 0;
 
 	x_step = (MAX_X - MIN_X) / WIDTH;
 	y_step = (MAX_Y - MIN_Y) / HEIGHT;
-	mlx_get_mouse_pos(mlx, &x, &y);
+//	mlx_get_mouse_pos(mlx, &x, &y);
 //	ft_printf("%i\n", x);
 //	ft_printf("%i\n", y);
 	while (y < HEIGHT)
 	{
-		fix_x_axis(x_step, y_step, y, x, g_img);
+		fix_x_axis(x_step, y_step, y, g_img);
 		y++;
 	}
 }

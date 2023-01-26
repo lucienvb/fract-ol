@@ -33,14 +33,18 @@
 # define THRESHOLD 4.0
 
 // STRUCTURES
+typedef struct s_vars
+{
+	void		*mlx;
+	void		*win;
+	mlx_image_t	*img;
+}	t_vars;
 
 // MAIN FUNCTION
 
 // FUNCTIONS -- MANDELBROT & JULIA
-//void	mandelbrot(void);
-void	mandelbrot(mlx_image_t *g_img, mlx_t *mlx);
+void	mandelbrot(mlx_image_t *g_img);
 void	give_color(mlx_image_t *g_img, int x, int y, int iterations);
-//void	julia_set(void);
 void	julia_set(mlx_image_t *g_img, int set);
 
 #endif
