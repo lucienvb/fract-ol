@@ -50,14 +50,14 @@ static int	iterations_new(int iterations, double c_real, double c_imag)
 		z_real_tmp = z_real - z_imag + c_real;
 		z_real = z_real_tmp * z_real_tmp;
 		z_imag = z_imag_tmp * z_imag_tmp;
-//		z_real = z_real_new * 0.5 + 1;
-//		z_imag = z_imag_new * 0.5 + 1;
+//		z_real = z_real ;
+//		z_imag = z_imag / 100000000000;
 		iterations++;
 	}
 	return (iterations);
 }
 
-static void	fix_x_axis(double x_step, double y_step, int y, mlx_image_t *g_img)
+static void	fix_x_axis(double x_step, double y_step, int y, mlx_image_t *g_img, int zoom)
 {
 	double	c_real;
 	double	c_imag;
@@ -67,29 +67,33 @@ static void	fix_x_axis(double x_step, double y_step, int y, mlx_image_t *g_img)
 	x = 0;
 	while (x < WIDTH)
 	{
-		c_real = MIN_X + x * x_step;
-		c_imag = MIN_Y + y * y_step;
+		c_real = MIN_X * zoom + x * x_step;
+		c_imag = MIN_Y * zoom + y * y_step;
 		iterations = iterations_new(iterations, c_real, c_imag);
 		give_color(g_img, x, y, iterations);
 		x++;
 	}
 }
 
-void	mandelbrot(mlx_image_t *g_img)
+void	mandelbrot(mlx_image_t *g_img, int zoom)
 {
 	double	x_step;
 	double	y_step;
-	int		y = 0;
+	int		y;
 //	int 	x = 0;
 
-	x_step = (MAX_X - MIN_X) / WIDTH;
-	y_step = (MAX_Y - MIN_Y) / HEIGHT;
+	y = 0;
+	zoom *= zoom_factor;
+	if (zoom == 0)
+		zoom = 1;
+	x_step = (MAX_X * zoom - MIN_X * zoom) / WIDTH;
+	y_step = (MAX_Y * zoom - MIN_Y * zoom) / HEIGHT;
 //	mlx_get_mouse_pos(mlx, &x, &y);
 //	ft_printf("%i\n", x);
 //	ft_printf("%i\n", y);
 	while (y < HEIGHT)
 	{
-		fix_x_axis(x_step, y_step, y, g_img);
+		fix_x_axis(x_step, y_step, y, g_img, zoom);
 		y++;
 	}
 }

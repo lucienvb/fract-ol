@@ -31,6 +31,8 @@
 # define MAX_ITERATIONS 40
 //# define MAX_ITERATIONS 100
 # define THRESHOLD 4.0
+//# define zoom 1.0
+# define zoom_factor 2.0
 
 // STRUCTURES
 typedef struct s_vars
@@ -43,7 +45,8 @@ typedef struct s_vars
 // MAIN FUNCTION
 
 // FUNCTIONS -- MANDELBROT & JULIA
-void	mandelbrot(mlx_image_t *g_img);
+int32_t	fractol(int choice, int set, int zoom);
+void	mandelbrot(mlx_image_t *g_img, int zoom);
 void	give_color(mlx_image_t *g_img, int x, int y, int iterations);
 void	julia_set(mlx_image_t *g_img, int set);
 
