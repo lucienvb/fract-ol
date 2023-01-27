@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <stdlib.h>
 #include "../fractol.h"
 
 void	give_color(mlx_image_t *g_img, int x, int y, int iterations)
@@ -26,14 +25,12 @@ void	give_color(mlx_image_t *g_img, int x, int y, int iterations)
 		mlx_put_pixel(g_img, x, y, 0x40E0D0);
 	else if (iterations > (0.2 * MAX_ITERATIONS) && iterations < (0.4 * MAX_ITERATIONS))
 		mlx_put_pixel(g_img, x, y, 0xC2DFFF);
-//	else if (iterations >= 0 && iterations < (0.2 * MAX_ITERATIONS))
 	else
 		mlx_put_pixel(g_img, x, y, 0xFDD31D);
-	//0xc1edfe
-	//0xe8e337
+
 }
 
-static int	iterations_new(int iterations, double c_real, double c_imag)
+	static int	iterations_new(int iterations, double c_real, double c_imag)
 {
 	double	z_real_tmp;
 	double 	z_imag_tmp;
@@ -50,14 +47,12 @@ static int	iterations_new(int iterations, double c_real, double c_imag)
 		z_real_tmp = z_real - z_imag + c_real;
 		z_real = z_real_tmp * z_real_tmp;
 		z_imag = z_imag_tmp * z_imag_tmp;
-//		z_real = z_real ;
-//		z_imag = z_imag / 100000000000;
 		iterations++;
 	}
 	return (iterations);
 }
 
-static void	fix_x_axis(double x_step, double y_step, int y, mlx_image_t *g_img, int zoom)
+static void	fix_x_axis(int y, t_fract *fract)
 {
 	double	c_real;
 	double	c_imag;
@@ -67,33 +62,25 @@ static void	fix_x_axis(double x_step, double y_step, int y, mlx_image_t *g_img, 
 	x = 0;
 	while (x < WIDTH)
 	{
-		c_real = MIN_X * zoom + x * x_step;
-		c_imag = MIN_Y * zoom + y * y_step;
+		c_real = fract->min_x + x * fract->x_step;
+		c_imag = fract->min_y + y * fract->y_step;
 		iterations = iterations_new(iterations, c_real, c_imag);
-		give_color(g_img, x, y, iterations);
+		give_color(fract->img, x, y, iterations);
 		x++;
 	}
 }
 
-void	mandelbrot(mlx_image_t *g_img, int zoom)
+void	mandelbrot(t_fract *fract)
 {
-	double	x_step;
-	double	y_step;
 	int		y;
-//	int 	x = 0;
 
 	y = 0;
-	zoom *= zoom_factor;
-	if (zoom == 0)
-		zoom = 1;
-	x_step = (MAX_X * zoom - MIN_X * zoom) / WIDTH;
-	y_step = (MAX_Y * zoom - MIN_Y * zoom) / HEIGHT;
-//	mlx_get_mouse_pos(mlx, &x, &y);
-//	ft_printf("%i\n", x);
-//	ft_printf("%i\n", y);
+	fract->x_step = (fract->max_x - fract->min_x) / WIDTH;
+	fract->y_step = (fract->max_y - fract->min_y) / HEIGHT;
 	while (y < HEIGHT)
 	{
-		fix_x_axis(x_step, y_step, y, g_img, zoom);
+		fix_x_axis(y, fract);
 		y++;
 	}
 }
+

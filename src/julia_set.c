@@ -48,7 +48,7 @@ static double	set_imag(double c, int set)
 	return (c);
 }
 
-static int	iterations_new(int x, int y, int iterations, int set)
+static int	iterations_new(int x, int y, int iterations, t_fract *fract)
 {
 	double c_real;
 	double c_imag;
@@ -59,10 +59,16 @@ static int	iterations_new(int x, int y, int iterations, int set)
 
 	c_real = 0.0;
 	c_imag = 0.0;
-	c_real = set_real(c_real, set);
-	c_imag = set_imag(c_imag, set);
+	c_real = set_real(c_real, fract->set);
+	c_imag = set_imag(c_imag, fract->set);
 	z_real = ((double) x / WIDTH) * 4 - 2;
 	z_imag = ((double) y / HEIGHT) * 4 - 2;
+
+	c_real /= fract->tmp;
+	c_imag /= fract->tmp;
+	z_real /= fract->tmp;
+	z_imag /= fract->tmp;
+
 	iterations = 0;
 	while (iterations < MAX_ITERATIONS
 		&& (z_real * z_real + z_imag * z_imag) <= THRESHOLD)
@@ -72,21 +78,10 @@ static int	iterations_new(int x, int y, int iterations, int set)
 		z_real = z_real_tmp;
 		iterations++;
 	}
-//	optimized escape tim algorithm (less multiplications), now only working with the Mandelbrot set
-
-//	while (iterations < MAX_ITERATIONS
-//		   && (z_real + z_imag) <= THRESHOLD)
-//	{
-//		z_imag_tmp = 2 * z_real_tmp * z_imag_tmp + c_imag;
-//		z_real_tmp = z_real - z_imag + c_real;
-//		z_real = z_real_tmp * z_real_tmp;
-//		z_imag = z_imag_tmp * z_imag_tmp;
-//		iterations++;
-//	}
 	return (iterations);
 }
 
-static void	fix_x_axis(int y, mlx_image_t *g_img, int set)
+static void	fix_x_axis(int y, t_fract *fract)
 {
 	int	x;
 	int	iterations;
@@ -94,20 +89,20 @@ static void	fix_x_axis(int y, mlx_image_t *g_img, int set)
 	x = 0;
 	while (x < WIDTH)
 	{
-		iterations = iterations_new(x, y, iterations, set);
-		give_color(g_img, x, y, iterations);
+		iterations = iterations_new(x, y, iterations, fract);
+		give_color(fract->img, x, y, iterations);
 		x++;
 	}
 }
 
-void	julia_set(mlx_image_t *g_img, int set)
+void	julia_set(t_fract *fract)
 {
 	int	y;
 
 	y = 0;
 	while (y < HEIGHT)
 	{
-		fix_x_axis(y, g_img, set);
+		fix_x_axis(y, fract);
 		y++;
 	}
 }

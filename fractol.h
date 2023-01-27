@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
@@ -24,30 +25,41 @@
 // DEFINE
 # define WIDTH 1080
 # define HEIGHT 720
-# define MIN_X -2.0
-# define MAX_X 1.0
-# define MIN_Y -1.5
-# define MAX_Y 1.5
-# define MAX_ITERATIONS 40
-//# define MAX_ITERATIONS 100
+//# define MIN_X -2.0
+//# define MAX_X 1.0
+//# define MIN_Y -1.5
+//# define MAX_Y 1.5
+//# define MAX_ITERATIONS 40
+# define MAX_ITERATIONS 100
 # define THRESHOLD 4.0
 //# define zoom 1.0
 # define zoom_factor 2.0
 
 // STRUCTURES
-typedef struct s_vars
+typedef struct s_fract
 {
 	void		*mlx;
 	void		*win;
 	mlx_image_t	*img;
-}	t_vars;
+	int 		choice;
+	int 		set;
+	double		min_x;
+	double		max_x;
+	double		min_y;
+	double		max_y;
+	double		x_step;
+	double		y_step;
+	double 		zoom;
+	double 		tmp;
+}	t_fract;
 
 // MAIN FUNCTION
 
 // FUNCTIONS -- MANDELBROT & JULIA
-int32_t	fractol(int choice, int set, int zoom);
-void	mandelbrot(mlx_image_t *g_img, int zoom);
+int32_t	mlx(t_fract *fract);
+void	mandelbrot(t_fract *fract);
 void	give_color(mlx_image_t *g_img, int x, int y, int iterations);
-void	julia_set(mlx_image_t *g_img, int set);
+void	julia_set(t_fract *fract);
 
 #endif
+
