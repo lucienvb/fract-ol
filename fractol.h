@@ -58,8 +58,17 @@ typedef struct s_fract
 // FUNCTIONS -- MANDELBROT & JULIA
 int32_t	mlx(t_fract *fract);
 void	mandelbrot(t_fract *fract);
-void	give_color(mlx_image_t *g_img, int x, int y, int iterations);
 void	julia_set(t_fract *fract);
+
+// FUNCTIONS -- UTILS
+void	zoom(t_fract *fract, double zoom_fac);
+void	hook(void *param);
+void	give_color(mlx_image_t *g_img, int x, int y, int iterations);
+void	initialize(t_fract *fract, char **argv);
+void	create_fractal(t_fract *fract);
+void	create_window(t_fract *fract);
+mlx_image_t	*create_new_window(void *ptr, int width, int height);
+
 
 #endif
 

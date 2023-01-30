@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <stdbool.h>
 # include "ft_printf/ft_printf.h"
 
 // STRUCTURES
@@ -46,6 +47,7 @@ size_t	error_double_check(char **argv);
 size_t	error_limit_check(char **argv);
 size_t	error_num_check(char *str);
 size_t	error_num_check_for_2d_array(char **argv);
+bool	input_parsing(int argc, char **argv);
 
 // LISTS
 int		add_back(t_node **head, int content);

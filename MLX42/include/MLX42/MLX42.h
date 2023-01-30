@@ -633,7 +633,7 @@ void mlx_put_pixel(mlx_image_t* image, uint32_t x, uint32_t y, uint32_t color);
  * @param[in] height The desired height of the image.
  * @return Pointer to the image buffer, if it failed to allocate then NULL.
  */
-mlx_image_t* mlx_new_image(mlx_t* mlx, uint32_t width, uint32_t height);
+mlx_image_t*   mlx_new_image(mlx_t* mlx, uint32_t width, uint32_t height);
 
 /**
  * Draws a new instance of an image, it will then share the same

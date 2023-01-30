@@ -4,6 +4,7 @@
 
 #include "./unity/src/unity.h"
 #include "fractol.h"
+#include "MLX42/include/MLX42/MLX42.h"
 
 void setUp(void) {
 	// set stuff up here
@@ -11,27 +12,6 @@ void setUp(void) {
 
 void tearDown(void) {
 	// clean stuff up here
-}
-
-void test_error_double_check(void)
-{
-	// !! error_double_check start at the second string in the array (because of the executable) !!
-
-	// test with doubles, output should be 0
-	char *arr1[4];
-	arr1[0] = "0";
-	arr1[1] = "1";
-	arr1[2] = "1";
-	arr1[3] = NULL;
-	TEST_ASSERT_EQUAL(0, error_double_check(arr1));
-
-	// test without doubles, output should be 1
-	char *arr2[4];
-	arr2[0] = "1";
-	arr2[1] = "2";
-	arr2[2] = "3";
-	arr2[3] = NULL;
-	TEST_ASSERT_EQUAL(1, error_double_check(arr2));
 }
 
 void test_ft_atoi_with_overflow()
@@ -62,38 +42,39 @@ void test_ft_atoi_with_overflow()
 	TEST_ASSERT_EQUAL(0, ft_atoi_with_overflow(str6, &num));
 }
 
-void test_already_sorted()
+void	test_zoom()
 {
-	t_node *stack_1;
-	t_node *stack_2;
+	t_fract	test;
+	test.zoom = 1.0;
 
-	stack_1 = (t_node *) malloc(sizeof(t_node));
-	stack_2 = (t_node *) malloc(sizeof(t_node));
-	stack_2->content = 2;
-	stack_2->next = NULL;
-	stack_1->content = 1;
-	stack_1->next = stack_2;
-
-	t_node *stack_3;
-	t_node *stack_4;
-
-	stack_3 = (t_node *) malloc(sizeof(t_node));
-	stack_4 = (t_node *) malloc(sizeof(t_node));
-	stack_4->content = 1;
-	stack_4->next = NULL;
-	stack_3->content = 2;
-	stack_3->next = stack_4;
-
-	TEST_ASSERT_EQUAL(0, list_reversed_sorted(stack_1));
-	TEST_ASSERT_EQUAL(1, list_reversed_sorted(stack_3));
-
+	TEST_ASSERT_EQUAL(test.zoom, 1);
+	zoom(&test, 0.005);
+	TEST_ASSERT_EQUAL(test.zoom, 1.005);
+	TEST_ASSERT_NOT_EQUAL(test.zoom, 0.0);
+	zoom(&test, 0.0);
+	TEST_ASSERT_EQUAL(test.zoom, 1.005);
 }
+
+//void test_input_parsing()
+//{
+//	int argc = 2;
+//	char **argv = NULL;
+//
+//	TEST_ASSERT_EQUAL(false, input_parsing(argc, argv));
+//	argc = 1;
+//	TEST_ASSERT_EQUAL(false, input_parsing(argc, argv));
+//	argc = 3;
+//	argv[0] = "test";
+//	argv[1] = "mandelbrot";
+//	argv[2] = NULL;
+//	TEST_ASSERT_EQUAL(true, input_parsing(argc, argv));
+//}
 
 // not needed when using generate_test_runner.rb
 int main(void) {
 	UNITY_BEGIN();
-	RUN_TEST(test_error_double_check);
 	RUN_TEST(test_ft_atoi_with_overflow);
-	RUN_TEST(test_already_sorted);
+	RUN_TEST(test_zoom);
+//	RUN_TEST(test_input_parsing);
 	return UNITY_END();
 }
