@@ -55,26 +55,51 @@ void	test_zoom()
 	TEST_ASSERT_EQUAL(test.zoom, 1.005);
 }
 
-//void test_input_parsing()
-//{
-//	int argc = 2;
-//	char **argv = NULL;
-//
-//	TEST_ASSERT_EQUAL(false, input_parsing(argc, argv));
-//	argc = 1;
-//	TEST_ASSERT_EQUAL(false, input_parsing(argc, argv));
-//	argc = 3;
-//	argv[0] = "test";
-//	argv[1] = "mandelbrot";
-//	argv[2] = NULL;
-//	TEST_ASSERT_EQUAL(true, input_parsing(argc, argv));
-//}
+void test_input_parsing()
+{
+	int argc = 2;
+	char **argv = NULL;
+	TEST_ASSERT_EQUAL(false, input_parsing(argc, argv));
 
-// not needed when using generate_test_runner.rb
+	int argc1 = 1;
+	TEST_ASSERT_EQUAL(false, input_parsing(argc1, argv));
+
+	int argc2 = 3;
+	char *argv1[3];
+	argv1[0] = "test";
+	argv1[1] = "mandelbrot";
+	argv1[2] = "1";
+	TEST_ASSERT_EQUAL(true, input_parsing(argc2, argv1));
+
+	char *argv2[3];
+	argv2[0] = "test";
+	argv2[1] = "julia";
+	argv2[2] = "1";
+	TEST_ASSERT_EQUAL(true, input_parsing(argc2, argv2));
+
+	char *argv3[3];
+	argv3[0] = "test";
+	argv3[1] = "juliajan";
+	argv3[2] = "5";
+	TEST_ASSERT_EQUAL(false, input_parsing(argc2, argv3));
+
+	char *argv4[3];
+	argv4[0] = "test";
+	argv4[1] = "julia";
+	argv4[2] = "2147483648";
+	TEST_ASSERT_EQUAL(false, input_parsing(argc2, argv4));
+
+	char *argv5[3];
+	argv5[0] = "test";
+	argv5[1] = "julia";
+	argv5[2] = "-2147483648234534524524254534525452";
+	TEST_ASSERT_EQUAL(false, input_parsing(argc2, argv5));
+}
+
 int main(void) {
 	UNITY_BEGIN();
 	RUN_TEST(test_ft_atoi_with_overflow);
 	RUN_TEST(test_zoom);
-//	RUN_TEST(test_input_parsing);
+	RUN_TEST(test_input_parsing);
 	return UNITY_END();
 }

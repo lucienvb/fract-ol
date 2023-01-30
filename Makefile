@@ -62,13 +62,10 @@ fclean: clean
 re: fclean all
 
 LIST_TEST := \
-			libft/error_handling/input_parsing.c \
 			src/zoom.c \
 			src/temp.c
-#			libft/convert/ft_at
 
 test: $(OBJ)
-		$(MAKE) -C ./MLX42
 		$(CC) $(CFLAGS) $(LDFLAGS) UnityExample.c $(LIST_TEST) unity/libunity.a ./libft/libft.a ./MLX42/libmlx42.a -o unittest
 		@ ./unittest
 
