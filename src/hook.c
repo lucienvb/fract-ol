@@ -13,6 +13,14 @@ void hook(void *param)
 			zoom(fract, -0.005);
 		else if (mlx_is_mouse_down(fract->mlx, MLX_MOUSE_BUTTON_RIGHT))
 			zoom(fract, 0.005);
+		else if (mlx_is_key_down(fract->mlx, MLX_KEY_A))
+			fract->nav_x += fract->nav_step;
+		else if (mlx_is_key_down(fract->mlx, MLX_KEY_D))
+			fract->nav_x -= fract->nav_step;
+		else if (mlx_is_key_down(fract->mlx, MLX_KEY_S))
+			fract->nav_y -= fract->nav_step;
+		else if (mlx_is_key_down(fract->mlx, MLX_KEY_W))
+			fract->nav_y += fract->nav_step;
 		mandelbrot(fract);
 	}
 	else if (fract->choice == 0)

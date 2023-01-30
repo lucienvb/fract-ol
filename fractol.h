@@ -51,6 +51,9 @@ typedef struct s_fract
 	double		y_step;
 	double 		zoom;
 	double 		tmp;
+	double 		nav_y;
+	double		nav_x;
+	double		nav_step;
 }	t_fract;
 
 // MAIN FUNCTION

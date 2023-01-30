@@ -19,6 +19,9 @@ static void initialize_settings(t_fract *fract)
 	fract->max_x = 1.0;
 	fract->min_y = -1.5;
 	fract->max_y = 1.5;
+	fract->nav_x = 0.0;
+	fract->nav_y = 0.0;
+	fract->nav_step = 0.05;
 }
 
 void	initialize(t_fract *fract, char **argv)
