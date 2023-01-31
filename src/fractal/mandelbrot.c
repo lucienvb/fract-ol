@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "../fractol.h"
+#include "../../fractol.h"
 
 static int	iterations_new(int iterations, double c_real, double c_imag, t_fract *fract)
 {

@@ -22,15 +22,16 @@ LDFLAGS	?= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -fast
 
 SRC		:= \
 		src/main.c \
-		src/julia_set.c \
-		src/mandelbrot.c \
+		src/fractal/julia_set.c \
+		src/fractal/mandelbrot.c \
 		src/color.c \
 		src/create.c \
-		src/hook.c \
 		src/initialize.c \
 		src/temp.c \
 		src/zoom.c \
-		src/list_parameters.c
+		src/list_parameters.c \
+		src/hooks/hook.c \
+		src/hooks/scroll_hook.c
 
 #src/test_main.c
 
