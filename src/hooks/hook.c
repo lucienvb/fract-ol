@@ -30,10 +30,20 @@ static void	change_zoom_fac(t_fract *fract)
 		fract->zoom_fac -= (fract->zoom_fac / 10);
 }
 
+static void	change_c(t_fract *fract)
+{
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_SEMICOLON))
+		fract->change_c += fract->c_step;
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_APOSTROPHE))
+		fract->change_c -= fract->c_step;
+	create_fractal(fract);
+}
+
 static void	hooks_init(t_fract *fract)
 {
 	change_nav_step(fract);
 	change_zoom_fac(fract);
+	change_c(fract);
 }
 
 void	hook(void *param)

@@ -26,8 +26,6 @@ static int	iterations_new(int iterations, double c_real, double c_imag, t_fract 
 	while (iterations < MAX_ITERATIONS
 		   && (z_real + z_imag) <= THRESHOLD)
 	{
-//		z_imag_tmp = 2 * z_real_tmp * z_imag_tmp + c_imag;
-//		z_real_tmp = z_real - z_imag + c_real;
 		z_imag_tmp = 2 * z_real_tmp * z_imag_tmp + c_imag + fract->nav_y;
 		z_real_tmp = z_real - z_imag + c_real + fract->nav_x;
 		z_real = z_real_tmp * z_real_tmp;
@@ -49,6 +47,8 @@ static void	fix_x_axis(int y, t_fract *fract)
 	{
 		c_real = fract->min_x + x * fract->x_step;
 		c_imag = fract->min_y + y * fract->y_step;
+//		c_real = fract->min_x + x * fract->x_step + fract->change_c;
+//		c_imag = fract->min_y + y * fract->y_step + fract->change_c;
 		iterations = iterations_new(iterations, c_real, c_imag, fract);
 		give_color(fract->img, x, y, iterations);
 		x++;

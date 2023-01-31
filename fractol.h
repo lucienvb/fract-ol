@@ -48,7 +48,8 @@ typedef struct s_fract
 	double		nav_y;
 	double		nav_x;
 	double		nav_step;
-//	double		nav_step_min;
+	double		change_c;
+	double		c_step;
 }	t_fract;
 
 // MAIN FUNCTION
