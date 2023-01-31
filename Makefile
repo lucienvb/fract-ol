@@ -29,7 +29,8 @@ SRC		:= \
 		src/hook.c \
 		src/initialize.c \
 		src/temp.c \
-		src/zoom.c
+		src/zoom.c \
+		src/list_parameters.c
 
 #src/test_main.c
 

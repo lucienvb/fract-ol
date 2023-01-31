@@ -5,6 +5,7 @@
 static void	main_event_loop(t_fract *fract)
 {
 	mlx_loop_hook(fract->mlx, &hook, fract);
+	mlx_scroll_hook(fract->mlx, &scroll_hook, fract);
 	mlx_loop(fract->mlx);
 }
 
@@ -28,8 +29,9 @@ int	main(int argc, char **argv)
 	t_fract	fract;
 
 	if (!input_parsing(argc, argv))
-		return (0);
+		return (list_parameters());
 	initialize(&fract, argv);
 	mlx(&fract);
+//	system("leaks fractol");
 	return (0);
 }

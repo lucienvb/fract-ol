@@ -14,7 +14,9 @@ static void	initialize_type(t_fract *fract, char **argv)
 static void initialize_settings(t_fract *fract)
 {
 	fract->tmp = 1.0;
-	fract->zoom = 1.0;
+	fract->zoom_in = 1.0;
+	fract->zoom_out = 1.0;
+	fract->zoom_fac = 0.001;
 	fract->min_x = -2.0;
 	fract->max_x = 1.0;
 	fract->min_y = -1.5;
@@ -22,6 +24,7 @@ static void initialize_settings(t_fract *fract)
 	fract->nav_x = 0.0;
 	fract->nav_y = 0.0;
 	fract->nav_step = 0.05;
+	fract->nav_step_min = 0.0001;
 }
 
 void	initialize(t_fract *fract, char **argv)
