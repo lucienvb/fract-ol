@@ -24,7 +24,6 @@ static void initialize_settings(t_fract *fract)
 	fract->nav_x = 0.0;
 	fract->nav_y = 0.0;
 	fract->nav_step = 0.01;
-//	fract->nav_step_min = 0.0001;
 }
 
 void	initialize(t_fract *fract, char **argv)

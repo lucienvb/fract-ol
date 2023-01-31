@@ -17,9 +17,9 @@ static void	hooks_navigate(t_fract *fract)
 static void	change_nav_step(t_fract *fract)
 {
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_1))
-		fract->nav_step -= (fract->nav_step / 10);
+		fract->nav_step /= 2;
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_2))
-		fract->nav_step += (fract->nav_step / 10);
+		fract->nav_step *= 2;
 }
 
 static void	change_zoom_fac(t_fract *fract)
@@ -43,9 +43,6 @@ void	hook(void *param)
 	fract = param;
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(fract->mlx);
-//	if (fract->choice == 1);
 	hooks_init(fract);
 	hooks_navigate(fract);
-//	else if (fract->choice == 0)
-//		hooks_julia(fract);
 }
