@@ -50,7 +50,7 @@ static void	fix_x_axis(int y, t_fract *fract)
 //		c_real = fract->min_x + x * fract->x_step + fract->change_c;
 //		c_imag = fract->min_y + y * fract->y_step + fract->change_c;
 		iterations = iterations_new(iterations, c_real, c_imag, fract);
-		give_color(fract->img, x, y, iterations);
+		give_color(fract, x, y, iterations);
 		x++;
 	}
 }

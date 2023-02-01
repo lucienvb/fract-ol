@@ -50,12 +50,13 @@ typedef struct s_fract
 	double		nav_step;
 	double		change_c;
 	double		c_step;
+	int 		color;
 }	t_fract;
 
 // MAIN FUNCTION
 
 // COLORING
-void		give_color(mlx_image_t *g_img, int x, int y, int iterations);
+void		give_color(t_fract *fract, int x, int y, int iterations);
 
 // FUNCTIONS -- MANDELBROT & JULIA
 int32_t		mlx(t_fract *fract);

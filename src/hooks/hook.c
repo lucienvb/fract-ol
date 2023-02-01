@@ -39,11 +39,24 @@ static void	change_c(t_fract *fract)
 	create_fractal(fract);
 }
 
+static void	change_color(t_fract *fract)
+{
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_SPACE))
+	{
+		if (fract->color == 1)
+			fract->color = 0;
+		else
+			fract->color++;
+	}
+	create_fractal(fract);
+}
+
 static void	hooks_init(t_fract *fract)
 {
 	change_nav_step(fract);
 	change_zoom_fac(fract);
 	change_c(fract);
+	change_color(fract);
 }
 
 void	hook(void *param)
