@@ -48,7 +48,8 @@ typedef struct s_fract
 	double		nav_y;
 	double		nav_x;
 	double		nav_step;
-	double		change_c;
+	double		change_c_real;
+	double		change_c_imag;
 	double		c_step;
 	int 		color;
 }	t_fract;

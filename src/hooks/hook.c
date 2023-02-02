@@ -3,13 +3,13 @@
 
 static void	hooks_navigate(t_fract *fract)
 {
-	if (mlx_is_key_down(fract->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_LEFT))
 		fract->nav_x -= fract->nav_step;
-	if (mlx_is_key_down(fract->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_RIGHT))
 		fract->nav_x += fract->nav_step;
-	if (mlx_is_key_down(fract->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_DOWN))
 		fract->nav_y += fract->nav_step;
-	if (mlx_is_key_down(fract->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_UP))
 		fract->nav_y -= fract->nav_step;
 	create_fractal(fract);
 }
@@ -32,10 +32,14 @@ static void	change_zoom_fac(t_fract *fract)
 
 static void	change_c(t_fract *fract)
 {
-	if (mlx_is_key_down(fract->mlx, MLX_KEY_SEMICOLON))
-		fract->change_c += fract->c_step;
-	if (mlx_is_key_down(fract->mlx, MLX_KEY_APOSTROPHE))
-		fract->change_c -= fract->c_step;
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_A))
+		fract->change_c_real += fract->c_step;
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_D))
+		fract->change_c_real -= fract->c_step;
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_S))
+		fract->change_c_imag += fract->c_step;
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_W))
+		fract->change_c_imag -= fract->c_step;
 	create_fractal(fract);
 }
 
@@ -43,7 +47,7 @@ static void	change_color(t_fract *fract)
 {
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_SPACE))
 	{
-		if (fract->color == 1)
+		if (fract->color == 3)
 			fract->color = 0;
 		else
 			fract->color++;

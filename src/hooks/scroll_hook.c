@@ -2,16 +2,16 @@
 
 static void	scroll_mandelbrot(t_fract *fract, double y_offset)
 {
-	if (y_offset < 0)
+	if (y_offset > 0)
 		zoom_in(fract);
-	else if (y_offset > 0)
+	else if (y_offset < 0)
 		zoom_out(fract);
 	mandelbrot(fract);
 }
 
 static void	scroll_julia(t_fract *fract, double y_offset)
 {
-	fract->zoom_in += fract->zoom_fac * y_offset;
+	fract->zoom_in -= fract->zoom_fac * y_offset;
 	julia_set(fract);
 }
 

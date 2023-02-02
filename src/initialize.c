@@ -24,7 +24,8 @@ static void initialize_settings(t_fract *fract)
 	fract->nav_x = 0.0;
 	fract->nav_y = 0.0;
 	fract->nav_step = 0.01;
-	fract->change_c = 0.0;
+	fract->change_c_real = 0.0;
+	fract->change_c_imag = 0.0;
 	fract->c_step = 0.005;
 	fract->color = 0;
 }

@@ -58,8 +58,8 @@ static int	iterations_new(int x, int y, int iterations, t_fract *fract)
 
 	c_real = 0.0;
 	c_imag = 0.0;
-	c_real = set_real(c_real, fract->set) + fract->change_c;
-	c_imag = set_imag(c_imag, fract->set) + fract->change_c;
+	c_real = set_real(c_real, fract->set) + fract->change_c_real;
+	c_imag = set_imag(c_imag, fract->set) + fract->change_c_imag;
 	z_real = ((((double) x / WIDTH) * 4 - 2) / fract->zoom_in) + fract->nav_x;
 	z_imag = ((((double) y / HEIGHT) * 4 - 2) / fract->zoom_in) + fract->nav_y;
 	iterations = 0;
