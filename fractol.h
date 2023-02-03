@@ -52,6 +52,8 @@ typedef struct s_fract
 	double		change_c_imag;
 	double		c_step;
 	int 		color;
+	uint32_t	rainbow[7];
+	int 		color_fac;
 }	t_fract;
 
 // MAIN FUNCTION

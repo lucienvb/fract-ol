@@ -28,10 +28,28 @@ static void initialize_settings(t_fract *fract)
 	fract->change_c_imag = 0.0;
 	fract->c_step = 0.005;
 	fract->color = 0;
+	fract->color_fac = 15;
+}
+
+static void	init_rainbow(t_fract *fract)
+{
+	fract->rainbow[0] = 0x9400D3FF;
+	fract->rainbow[1] = 0x4B0082FF;
+	fract->rainbow[2] = 0x0000FFFF;
+	fract->rainbow[3] = 0x00FF00FF;
+	fract->rainbow[4] = 0xFFFF00FF;
+	fract->rainbow[5] = 0xFF7F00FF;
+	fract->rainbow[6] = 0xFF0000FF;
+}
+
+static void	initialize_colors(t_fract *fract)
+{
+	init_rainbow(fract);
 }
 
 void	initialize(t_fract *fract, char **argv)
 {
 	initialize_settings(fract);
+	initialize_colors(fract);
 	initialize_type(fract, argv);
 }
