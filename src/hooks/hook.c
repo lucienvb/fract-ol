@@ -59,10 +59,10 @@ static void	change_auto_background(t_fract *fract)
 {
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_B))
 	{
-		if (fract->auto_background == 6)
-			fract->auto_background = 0;
+		if (fract->auto_bg == 6)
+			fract->auto_bg = 0;
 		else
-			fract->auto_background++;
+			fract->auto_bg++;
 	}
 }
 

@@ -21,12 +21,15 @@ LDFLAGS	?= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -o3 -marc
 #LDFLAGS	?= -fsanitize=address -g
 
 SRC		:= \
+		src/color/color.c \
+		src/color/give_diff.c \
+		src/color/give_auto.c \
+		src/initialize/initialize_colors.c \
+		src/initialize/initialize_parameters.c \
 		src/main.c \
 		src/fractal/julia_set.c \
 		src/fractal/mandelbrot.c \
-		src/color.c \
 		src/create.c \
-		src/initialize.c \
 		src/temp.c \
 		src/zoom.c \
 		src/list_parameters.c \

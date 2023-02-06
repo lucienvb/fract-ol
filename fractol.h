@@ -59,7 +59,7 @@ typedef struct s_fract
 	double 		color_fac;
 	int 		auto_color_fac;
 	int 		auto_layer_fac;
-	int 		auto_background;
+	int 		auto_bg;
 	int 		auto_basis;
 }	t_fract;
 
@@ -67,16 +67,23 @@ typedef struct s_fract
 
 // COLORING
 void		give_color(t_fract *fract, int x, int y, int iterations);
+void		give_diff(t_fract *fract, uint32_t x, uint32_t y, int iterations);
+void		gc_auto(t_fract *fract, uint32_t x, uint32_t y, int iterations);
 
 // FUNCTIONS -- MANDELBROT & JULIA
-int32_t		mlx(t_fract *fract);
 void		mandelbrot(t_fract *fract);
 void		julia_set(t_fract *fract);
+
+// INITIALIZE
+void		initialize(t_fract *fract, char **argv);
+void		init_colors(t_fract *fract);
+
+// MLX
+int32_t		mlx(t_fract *fract);
 
 // FUNCTIONS -- UTILS
 void		zoom_in(t_fract *fract);
 void		zoom_out(t_fract *fract);
-void		initialize(t_fract *fract, char **argv);
 void		create_fractal(t_fract *fract);
 void		create_window(t_fract *fract);
 mlx_image_t	*create_new_window(void *ptr, int width, int height);
