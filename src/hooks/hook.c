@@ -47,7 +47,7 @@ static void	change_color(t_fract *fract)
 {
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_SPACE))
 	{
-		if (fract->color == 3)
+		if (fract->color == 4)
 			fract->color = 0;
 		else
 			fract->color++;
