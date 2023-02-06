@@ -28,11 +28,12 @@ static void initialize_settings(t_fract *fract)
 	fract->change_c_imag = 0.0;
 	fract->c_step = 0.005;
 	fract->color = 0;
-	fract->color_fac = 15;
+	fract->color_fac = 17.0;
 }
 
 static void	init_rainbow(t_fract *fract)
 {
+//	fract->rainbow[0] = 0x9400D3FF;
 	fract->rainbow[0] = 0x9400D3FF;
 	fract->rainbow[1] = 0x4B0082FF;
 	fract->rainbow[2] = 0x0000FFFF;
@@ -40,7 +41,18 @@ static void	init_rainbow(t_fract *fract)
 	fract->rainbow[4] = 0xFFFF00FF;
 	fract->rainbow[5] = 0xFF7F00FF;
 	fract->rainbow[6] = 0xFF0000FF;
+//	fract->rainbow[7] = 0x5F021FFF;
 }
+
+//static void	init_psyc_colors(t_fract *fract)
+//{
+//	fract->rainbow[0] = 0x443e5eFF;
+//	fract->rainbow[1] = 0xa0acb4FF;
+//	fract->rainbow[2] = 0x63a75eFF;
+//	fract->rainbow[3] = 0x484498FF;
+//	fract->rainbow[4] = 0xf6cb66FF;
+//	fract->rainbow[5] = 0x2bc0e8FF;
+//}
 
 static void	initialize_colors(t_fract *fract)
 {

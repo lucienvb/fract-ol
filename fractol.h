@@ -53,7 +53,8 @@ typedef struct s_fract
 	double		c_step;
 	int 		color;
 	uint32_t	rainbow[7];
-	int 		color_fac;
+//	uint32_t 	psyc_colors[6];
+	double 		color_fac;
 }	t_fract;
 
 // MAIN FUNCTION
