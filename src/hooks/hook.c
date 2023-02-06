@@ -55,12 +55,36 @@ static void	change_color(t_fract *fract)
 	create_fractal(fract);
 }
 
+static void	change_auto_background(t_fract *fract)
+{
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_B))
+	{
+		if (fract->auto_background == 6)
+			fract->auto_background = 0;
+		else
+			fract->auto_background++;
+	}
+}
+
+static void	change_auto_basis(t_fract *fract)
+{
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_N))
+	{
+		if (fract->auto_basis == 6)
+			fract->auto_basis = 0;
+		else
+			fract->auto_basis++;
+	}
+}
+
 static void	hooks_init(t_fract *fract)
 {
 	change_nav_step(fract);
 	change_zoom_fac(fract);
 	change_c(fract);
 	change_color(fract);
+	change_auto_basis(fract);
+	change_auto_background(fract);
 }
 
 void	hook(void *param)

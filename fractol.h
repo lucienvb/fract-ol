@@ -57,6 +57,10 @@ typedef struct s_fract
 	uint32_t 	psyc_two[7];
 	uint32_t 	blue_green[7];
 	double 		color_fac;
+	int 		auto_color_fac;
+	int 		auto_layer_fac;
+	int 		auto_background;
+	int 		auto_basis;
 }	t_fract;
 
 // MAIN FUNCTION

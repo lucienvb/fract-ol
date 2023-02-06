@@ -31,6 +31,10 @@ static void	initialize_settings(t_fract *fract)
 	fract->c_step = 0.005;
 	fract->color = 0;
 	fract->color_fac = 17.0;
+	fract->auto_color_fac = 3;
+	fract->auto_layer_fac = 5;
+	fract->auto_background = 0;
+	fract->auto_basis = 0;
 }
 
 static void	init_rainbow(t_fract *fract)
