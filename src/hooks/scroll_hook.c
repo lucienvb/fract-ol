@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../fractol.h"
+//#include "../../fractol.h"
+#include <fractol.h>
 
 static void	scroll_mandelbrot(t_fract *fract, double y_offset)
 {

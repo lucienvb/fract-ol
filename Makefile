@@ -18,6 +18,7 @@ NAME	:= fractol
 CC		:= cc
 CFLAGS	?= -Wall -Wextra -Werror
 LDFLAGS	?= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -o3 -march=native
+IFLAG	?= -I.
 #SFLAG	?= -fsanitize=address -g
 
 SRC		:= \
@@ -51,10 +52,10 @@ all:	$(NAME)
 $(NAME): $(OBJ)
 		$(MAKE) -C ./libft
 		$(MAKE) -C ./MLX42
-		$(CC) $(LDFLAGS) $(SFLAG) $^ ./libft/libft.a ./MLX42/libmlx42.a -o $(NAME)
+		$(CC) $(LDFLAGS) $(IFLAG) $(SFLAG) $^ ./libft/libft.a ./MLX42/libmlx42.a -o $(NAME)
 
 %.o: %.c
-		$(CC) -c $(CFLAGS) -o $@ $^
+		$(CC) -c $(CFLAGS) $(IFLAG) -o $@ $^
 
 clean:
 		rm -f $(OBJ)
