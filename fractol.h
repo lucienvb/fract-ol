@@ -76,42 +76,40 @@ typedef struct s_fract
 	int			set;
 }	t_fract;
 
-// MAIN FUNCTION
+// INITIALIZE
+void	create_fractal(t_fract *fract);
+void	create_window(t_fract *fract);
+void	initialize(t_fract *fract, char **argv);
+void	init_colors(t_fract *fract);
+int		list_parameters(void);
 
-// COLORING
-void	give_color(t_fract *fract, int x, int y, int iterations);
-void	give_diff(t_fract *fract, uint32_t x, uint32_t y, int iterations);
-void	gc_auto(t_fract *fract, uint32_t x, uint32_t y, int iterations);
-
-// FUNCTIONS -- MANDELBROT & JULIA
-void	mandelbrot(t_fract *fract);
+// JULIA
 void	julia_set(t_fract *fract);
 double	set_imag(double c, int set);
 double	set_real(double c, int set);
 
-// INITIALIZE
-void	initialize(t_fract *fract, char **argv);
-void	init_colors(t_fract *fract);
-
-// MLX
+// MAIN
 int32_t	mlx(t_fract *fract);
 
-// FUNCTIONS -- UTILS
-void	zoom_in(t_fract *fract);
-void	zoom_out(t_fract *fract);
-void	create_fractal(t_fract *fract);
-void	create_window(t_fract *fract);
-int		list_parameters(void);
+// MANDELBROT
+void	mandelbrot(t_fract *fract);
 
-// HOOKS
-void	hook(void *param);
-void	scroll_hook(double x_offset, double y_offset, void *param);
-void	change_color(t_fract *fract);
+// UTILS -- COLORING
+void	give_color(t_fract *fract, int x, int y, int iterations);
+void	give_diff(t_fract *fract, uint32_t x, uint32_t y, int iterations);
+void	gc_auto(t_fract *fract, uint32_t x, uint32_t y, int iterations);
+
+// UTILS -- HOOKS
 void	change_auto_background(t_fract *fract);
 void	change_auto_basis(t_fract *fract);
-void	hooks_navigate(t_fract *fract);
+void	change_c(t_fract *fract);
+void	change_color(t_fract *fract);
 void	change_nav_step(t_fract *fract);
 void	change_zoom_fac(t_fract *fract);
-void	change_c(t_fract *fract);
+void	hook(void *param);
+void	hooks_navigate(t_fract *fract);
+void	scroll_hook(double x_offset, double y_offset, void *param);
+void	zoom_in(t_fract *fract);
+void	zoom_out(t_fract *fract);
 
 #endif

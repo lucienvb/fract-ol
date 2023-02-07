@@ -42,19 +42,6 @@ void test_ft_atoi_with_overflow()
 	TEST_ASSERT_EQUAL(0, ft_atoi_with_overflow(str6, &num));
 }
 
-void	test_zoom()
-{
-	t_fract	test;
-	test.zoom = 1.0;
-
-	TEST_ASSERT_EQUAL(test.zoom, 1);
-	zoom(&test, 0.005);
-	TEST_ASSERT_EQUAL(test.zoom, 1.005);
-	TEST_ASSERT_NOT_EQUAL(test.zoom, 0.0);
-	zoom(&test, 0.0);
-	TEST_ASSERT_EQUAL(test.zoom, 1.005);
-}
-
 void test_input_parsing()
 {
 	int argc = 2;
@@ -99,7 +86,6 @@ void test_input_parsing()
 int main(void) {
 	UNITY_BEGIN();
 	RUN_TEST(test_ft_atoi_with_overflow);
-	RUN_TEST(test_zoom);
 	RUN_TEST(test_input_parsing);
 	return UNITY_END();
 }

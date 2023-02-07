@@ -25,23 +25,20 @@ SRC		:= \
 		src/color/color.c \
 		src/color/give_diff.c \
 		src/color/give_auto.c \
-		src/initialize/initialize_colors.c \
-		src/initialize/initialize_parameters.c \
-		src/initialize/create.c \
-		src/initialize/list_parameters.c \
 		src/fractal/julia_set.c \
-		src/fractal/set_type.c \
-		src/fractal/mandelbrot.c \
-		src/hooks/zoom_mandelbrot.c \
+        src/fractal/set_type.c \
+        src/fractal/mandelbrot.c \
+        src/hooks/zoom_mandelbrot.c \
 		src/hooks/hook.c \
 		src/hooks/scroll_hook.c \
 		src/hooks/hook_change_color.c \
 		src/hooks/hook_navigate.c \
 		src/hooks/hook_zoom.c \
-		src/hooks/hook_change_c.c
-
-
-#src/test_main.c
+		src/hooks/hook_change_c.c \
+		src/initialize/initialize_colors.c \
+		src/initialize/initialize_parameters.c \
+		src/initialize/create.c \
+		src/initialize/list_parameters.c
 
 OBJ		:= $(SRC:.c=.o)
 
@@ -71,9 +68,7 @@ fclean: clean
 
 re: fclean all
 
-LIST_TEST := \
-			src/zoom.c \
-			src/temp.c
+#LIST_TEST :=
 
 test: $(OBJ)
 		$(CC) $(CFLAGS) $(LDFLAGS) UnityExample.c $(LIST_TEST) unity/libunity.a ./libft/libft.a ./MLX42/libmlx42.a -o unittest
