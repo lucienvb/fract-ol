@@ -12,6 +12,9 @@
 
 #include "../../fractol.h"
 
+// Checks color type and returns corresponding color.
+// If color type is 0, the auto coloring is used.
+// Otherwise, rainbow, psychedelic or blue-green coloring is used.
 void	give_color(t_fract *fract, int x, int y, int iterations)
 {
 	if (fract->color.color_type == 0)

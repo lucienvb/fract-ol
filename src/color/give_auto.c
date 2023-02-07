@@ -12,6 +12,7 @@
 
 #include "../../fractol.h"
 
+// When iterations equals max_iterations, the first color in lst is used.
 static int	iter_hundred(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 {
 	uint32_t	lst;
@@ -27,6 +28,8 @@ static int	iter_hundred(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 	return (0);
 }
 
+// Depending on which number of iterations between 'i' and max_iterations,
+// a color in lst is used.
 static int	iter_between(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 {
 	uint32_t	lst;
@@ -53,6 +56,8 @@ static int	iter_between(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 	return (i);
 }
 
+// Generates color based on a given input with a variation of inputs.
+// When i equals 0, a background color is used.
 void	gc_auto(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 {
 	t_color	*col;

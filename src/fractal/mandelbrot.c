@@ -13,6 +13,8 @@
 #include <stdio.h>
 #include "../../fractol.h"
 
+// Calculates and returns the number of iterations for the current
+// location (x, y) required to escape a threshold.
 static int	iter_new(int iter, double c_real, double c_imag, t_fract *fract)
 {
 	double	z_real_tmp;
@@ -34,6 +36,11 @@ static int	iter_new(int iter, double c_real, double c_imag, t_fract *fract)
 	return (iter);
 }
 
+// Iterates over the x-axis (WIDTH)
+// Sets c_real and c_imag
+// Calculates the number of iterations at the current location (x, y)
+// The give_color function sets the color of the pixel located at x, y
+// based on the value of iterations.
 static void	fix_x_axis(int y, t_fract *fract)
 {
 	double	c_real;
@@ -52,6 +59,9 @@ static void	fix_x_axis(int y, t_fract *fract)
 	}
 }
 
+// Sets x_step and y_step
+// Iterates over the y-axis (HEIGHT) and calls the fix_x_axis function
+// for every value.
 void	mandelbrot(t_fract *fract)
 {
 	int		y;

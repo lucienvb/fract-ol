@@ -21,6 +21,7 @@ static void	init_type(t_fract *fract, char **argv)
 	fract->set = ft_atoi(argv[2]);
 }
 
+// Initializes hook settings
 static void	init_hook_settings(t_fract *fract)
 {
 	fract->modif.zoom_in = 1.0;
@@ -34,6 +35,7 @@ static void	init_hook_settings(t_fract *fract)
 	fract->modif.c_step = 0.005;
 }
 
+// Initializes screen settings
 static void	init_screen_settings(t_screen *screen)
 {
 	screen->min_x = -2.0;
@@ -42,6 +44,7 @@ static void	init_screen_settings(t_screen *screen)
 	screen->max_y = 1.5;
 }
 
+// Initializes color settings
 static void	init_color_setting(t_color *color)
 {
 	color->color_type = 0;

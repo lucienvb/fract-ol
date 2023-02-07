@@ -12,6 +12,14 @@
 
 #include "../../fractol.h"
 
+// This hooks allows you to quit the program using the escape button
+static void	escape_hook(t_fract *fract)
+{
+	if (mlx_is_key_down(fract->mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(fract->mlx);
+}
+
+// Initializes all hooks
 static void	hooks_init(t_fract *fract)
 {
 	change_nav_step(fract);
@@ -20,15 +28,15 @@ static void	hooks_init(t_fract *fract)
 	change_color(fract);
 	change_auto_basis(fract);
 	change_auto_background(fract);
+	escape_hook(fract);
 }
 
+// Initializes all hooks and navigation
 void	hook(void *param)
 {
 	t_fract	*fract;
 
 	fract = param;
-	if (mlx_is_key_down(fract->mlx, MLX_KEY_ESCAPE))
-		mlx_close_window(fract->mlx);
 	hooks_init(fract);
 	hooks_navigate(fract);
 }

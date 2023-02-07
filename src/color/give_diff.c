@@ -12,6 +12,7 @@
 
 #include "../../fractol.h"
 
+// Check which color type and returns it.
 static uint32_t	*get_color(t_color *color)
 {
 	if (color->color_type == 4)

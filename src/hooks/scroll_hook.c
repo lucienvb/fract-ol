@@ -27,6 +27,7 @@ static void	scroll_julia(t_fract *fract, double y_offset)
 	julia_set(fract);
 }
 
+// Hook to realize zooming in and out with the mousewheel
 void	scroll_hook(double x_offset, double y_offset, void *param)
 {
 	t_fract	*fract;

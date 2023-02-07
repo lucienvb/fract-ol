@@ -30,6 +30,8 @@ static double	set_z_imag(t_fract *fract, double z_imag, int y)
 	return (z_imag);
 }
 
+// Calculates and returns the number of iterations for the current
+// location (x, y) required to escape a threshold.
 static int	iterations_new(int x, int y, int iterations, t_fract *fract)
 {
 	double	c_real;
@@ -58,6 +60,10 @@ static int	iterations_new(int x, int y, int iterations, t_fract *fract)
 	return (iterations);
 }
 
+// Iterates over the x-axis (WIDTH)
+// Calculates the number of iterations at the current location (x, y)
+// The give_color function sets the color of the pixel located at x, y
+// based on the value of iterations.
 static void	fix_x_axis(int y, t_fract *fract)
 {
 	int	x;
@@ -72,6 +78,8 @@ static void	fix_x_axis(int y, t_fract *fract)
 	}
 }
 
+// Iterates over the y-axis (HEIGHT) and calls the fix_x_axis function
+// for every value.
 void	julia_set(t_fract *fract)
 {
 	int	y;

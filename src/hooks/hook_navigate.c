@@ -12,6 +12,7 @@
 
 #include "../../fractol.h"
 
+// Hook for making navigating through the screen possible
 void	hooks_navigate(t_fract *fract)
 {
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_LEFT))
@@ -25,6 +26,7 @@ void	hooks_navigate(t_fract *fract)
 	create_fractal(fract);
 }
 
+// Hook to change the navigation step size
 void	change_nav_step(t_fract *fract)
 {
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_1))

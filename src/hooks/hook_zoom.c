@@ -12,6 +12,7 @@
 
 #include "../../fractol.h"
 
+// Hook to change the zoom factor size
 void	change_zoom_fac(t_fract *fract)
 {
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_EQUAL))

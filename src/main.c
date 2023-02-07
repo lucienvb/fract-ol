@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 
+// Loop in which the hooks are active.
 static void	main_event_loop(t_fract *fract)
 {
 	mlx_loop_hook(fract->mlx, &hook, fract);
@@ -21,12 +22,15 @@ static void	main_event_loop(t_fract *fract)
 	mlx_loop(fract->mlx);
 }
 
+// Deletes the created image and terminate the mlx.
 static void	clean_up(t_fract *fract)
 {
 	mlx_delete_image(fract->mlx, fract->img);
 	mlx_terminate(fract->mlx);
 }
 
+// Creates a window, creates a fractal, goes in a loop for the hooks
+// and cleans up at the end.
 int32_t	mlx(t_fract *fract)
 {
 	create_window(fract);
@@ -36,6 +40,10 @@ int32_t	mlx(t_fract *fract)
 	return (EXIT_SUCCESS);
 }
 
+// Checks the input in the command line and gives overview
+// of available parameters if necessary.
+// Does the initialization.
+// Calls the mlx function.
 int	main(int argc, char **argv)
 {
 	t_fract	fract;

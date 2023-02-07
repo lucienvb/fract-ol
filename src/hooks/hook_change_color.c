@@ -12,6 +12,7 @@
 
 #include "../../fractol.h"
 
+// Hook for changing coloring
 void	change_color(t_fract *fract)
 {
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_SPACE))
@@ -24,6 +25,7 @@ void	change_color(t_fract *fract)
 	create_fractal(fract);
 }
 
+// Hook for changing background coloring for the 'auto' color type
 void	change_auto_background(t_fract *fract)
 {
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_B))
@@ -35,6 +37,7 @@ void	change_auto_background(t_fract *fract)
 	}
 }
 
+// Hook for changing basis coloring for the 'auto' color type
 void	change_auto_basis(t_fract *fract)
 {
 	if (mlx_is_key_down(fract->mlx, MLX_KEY_N))
