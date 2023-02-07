@@ -18,23 +18,28 @@ NAME	:= fractol
 CC		:= cc
 CFLAGS	?= -Wall -Wextra -Werror
 LDFLAGS	?= -lglfw3 -framework Cocoa -framework OpenGL -framework IOKit -o3 -march=native
-#LDFLAGS	?= -fsanitize=address -g
+#SFLAG	?= -fsanitize=address -g
 
 SRC		:= \
+		src/main.c \
 		src/color/color.c \
 		src/color/give_diff.c \
 		src/color/give_auto.c \
 		src/initialize/initialize_colors.c \
 		src/initialize/initialize_parameters.c \
-		src/main.c \
+		src/initialize/create.c \
+		src/initialize/list_parameters.c \
 		src/fractal/julia_set.c \
+		src/fractal/set_type.c \
 		src/fractal/mandelbrot.c \
-		src/create.c \
-		src/temp.c \
-		src/zoom.c \
-		src/list_parameters.c \
+		src/hooks/zoom_mandelbrot.c \
 		src/hooks/hook.c \
-		src/hooks/scroll_hook.c
+		src/hooks/scroll_hook.c \
+		src/hooks/hook_change_color.c \
+		src/hooks/hook_navigate.c \
+		src/hooks/hook_zoom.c \
+		src/hooks/hook_change_c.c
+
 
 #src/test_main.c
 
@@ -49,7 +54,7 @@ all:	$(NAME)
 $(NAME): $(OBJ)
 		$(MAKE) -C ./libft
 		$(MAKE) -C ./MLX42
-		$(CC) $(LDFLAGS) $^ ./libft/libft.a ./MLX42/libmlx42.a -o $(NAME)
+		$(CC) $(LDFLAGS) $(SFLAG) $^ ./libft/libft.a ./MLX42/libmlx42.a -o $(NAME)
 
 %.o: %.c
 		$(CC) -c $(CFLAGS) -o $@ $^

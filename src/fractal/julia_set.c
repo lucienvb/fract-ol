@@ -10,42 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <complex.h>
-#include <math.h>
 #include "../../fractol.h"
 
-static double	set_real(double c, int set)
+static double	set_z_real(t_fract *fract, double z_real, int x)
 {
-	if (set == 1)
-		c = -0.79;
-	else if (set == 2)
-		c = -0.162;
-	else if (set == 3)
-		c = -0.3;
-	else if (set == 4)
-		c = -1.476;
-	else if (set == 5)
-		c = -0.12;
-	else
-		c = 0.28;
-	return (c);
+	t_modif	*mod;
+
+	mod = &fract->modif;
+	z_real = ((((double) x / WIDTH) * 4 - 2) / mod->zoom_in) + mod->nav_x;
+	return (z_real);
 }
 
-static double	set_imag(double c, int set)
+static double	set_z_imag(t_fract *fract, double z_imag, int y)
 {
-	if (set == 1)
-		c = 0.156;
-	else if (set == 2)
-		c = 1.04;
-	else if (set == 3)
-		c = -0.01;
-	else if (set == 4)
-		c = 0;
-	else if (set == 5)
-		c = -0.77;
-	else
-		c = 0.008;
-	return (c);
+	t_modif	*mod;
+
+	mod = &fract->modif;
+	z_imag = ((((double) y / HEIGHT) * 4 - 2) / mod->zoom_in) + mod->nav_y;
+	return (z_imag);
 }
 
 static int	iterations_new(int x, int y, int iterations, t_fract *fract)
@@ -58,10 +40,12 @@ static int	iterations_new(int x, int y, int iterations, t_fract *fract)
 
 	c_real = 0.0;
 	c_imag = 0.0;
-	c_real = set_real(c_real, fract->set) + fract->change_c_real;
-	c_imag = set_imag(c_imag, fract->set) + fract->change_c_imag;
-	z_real = ((((double) x / WIDTH) * 4 - 2) / fract->zoom_in) + fract->nav_x;
-	z_imag = ((((double) y / HEIGHT) * 4 - 2) / fract->zoom_in) + fract->nav_y;
+	z_real = 0.0;
+	z_imag = 0.0;
+	c_real = set_real(c_real, fract->set) + fract->modif.change_c_real;
+	c_imag = set_imag(c_imag, fract->set) + fract->modif.change_c_imag;
+	z_real = set_z_real(fract, z_real, x);
+	z_imag = set_z_imag(fract, z_imag, y);
 	iterations = 0;
 	while (iterations < MAX_ITERATIONS
 		&& (z_real * z_real + z_imag * z_imag) <= THRESHOLD)

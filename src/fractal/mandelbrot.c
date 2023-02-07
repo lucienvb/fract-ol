@@ -13,26 +13,25 @@
 #include <stdio.h>
 #include "../../fractol.h"
 
-static int	iterations_new(int iterations, double c_real, double c_imag, t_fract *fract)
+static int	iter_new(int iter, double c_real, double c_imag, t_fract *fract)
 {
 	double	z_real_tmp;
-	double 	z_imag_tmp;
+	double	z_imag_tmp;
 	double	z_real;
 	double	z_imag;
 
 	z_real = 0.0;
 	z_imag = 0.0;
-	iterations = 0;
-	while (iterations < MAX_ITERATIONS
-		   && (z_real + z_imag) <= THRESHOLD)
+	iter = 0;
+	while (iter < MAX_ITERATIONS && (z_real + z_imag) <= THRESHOLD)
 	{
-		z_imag_tmp = 2 * z_real_tmp * z_imag_tmp + c_imag + fract->nav_y;
-		z_real_tmp = z_real - z_imag + c_real + fract->nav_x;
+		z_imag_tmp = 2 * z_real_tmp * z_imag_tmp + c_imag + fract->modif.nav_y;
+		z_real_tmp = z_real - z_imag + c_real + fract->modif.nav_x;
 		z_real = z_real_tmp * z_real_tmp;
 		z_imag = z_imag_tmp * z_imag_tmp;
-		iterations++;
+		iter++;
 	}
-	return (iterations);
+	return (iter);
 }
 
 static void	fix_x_axis(int y, t_fract *fract)
@@ -45,9 +44,9 @@ static void	fix_x_axis(int y, t_fract *fract)
 	x = 0;
 	while (x < WIDTH)
 	{
-		c_real = fract->min_x + x * fract->x_step;
-		c_imag = fract->min_y + y * fract->y_step;
-		iterations = iterations_new(iterations, c_real, c_imag, fract);
+		c_real = fract->screen.min_x + x * fract->modif.x_step;
+		c_imag = fract->screen.min_y + y * fract->modif.y_step;
+		iterations = iter_new(iterations, c_real, c_imag, fract);
 		give_color(fract, x, y, iterations);
 		x++;
 	}
@@ -58,8 +57,8 @@ void	mandelbrot(t_fract *fract)
 	int		y;
 
 	y = 0;
-	fract->x_step = (fract->max_x - fract->min_x) / WIDTH;
-	fract->y_step = (fract->max_y - fract->min_y) / HEIGHT;
+	fract->modif.x_step = (fract->screen.max_x - fract->screen.min_x) / WIDTH;
+	fract->modif.y_step = (fract->screen.max_y - fract->screen.min_y) / HEIGHT;
 	while (y < HEIGHT)
 	{
 		fix_x_axis(y, fract);

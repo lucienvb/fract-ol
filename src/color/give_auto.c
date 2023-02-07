@@ -15,8 +15,10 @@
 static int	iter_hundred(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 {
 	uint32_t	lst;
+	t_color		*col;
 
-	lst = fract->psyc_two[fract->auto_basis];
+	col = &fract->color;
+	lst = col->psyc_two[col->auto_basis];
 	if (iterations == MAX_ITERATIONS)
 	{
 		mlx_put_pixel(fract->img, x, y, lst);
@@ -28,13 +30,15 @@ static int	iter_hundred(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 static int	iter_between(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 {
 	uint32_t	lst;
+	t_color		*col;
 	int			i;
 	int			j;
 
 	i = MAX_ITERATIONS;
-	lst = fract->psyc_two[fract->auto_basis];
-	lst /= fract->auto_color_fac;
-	j = i - fract->auto_layer_fac;
+	col = &fract->color;
+	lst = col->psyc_two[col->auto_basis];
+	lst /= col->auto_color_fac;
+	j = i - col->auto_layer_fac;
 	while (i > 0)
 	{
 		if (iterations < i && iterations > j)
@@ -42,20 +46,22 @@ static int	iter_between(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 			mlx_put_pixel(fract->img, x, y, lst);
 			return (1);
 		}
-		lst /= fract->auto_color_fac;
+		lst /= col->auto_color_fac;
 		i = j;
-		j -= fract->auto_layer_fac;
+		j -= col->auto_layer_fac;
 	}
 	return (i);
 }
 
 void	gc_auto(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 {
-	int	i;
+	t_color	*col;
+	int		i;
 
 	if (iter_hundred(fract, x, y, iterations) == 1)
 		return ;
 	i = iter_between(fract, x, y, iterations);
+	col = &fract->color;
 	if (i == 0)
-		mlx_put_pixel(fract->img, x, y, fract->psyc_one[fract->auto_bg]);
+		mlx_put_pixel(fract->img, x, y, col->psyc_one[col->auto_bg]);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/02/07 11:01:51 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/02/07 11:01:53 by lvan-bus      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../fractol.h"
 
 #include <stdio.h>
@@ -32,6 +44,5 @@ int	main(int argc, char **argv)
 		return (list_parameters());
 	initialize(&fract, argv);
 	mlx(&fract);
-//	system("leaks fractol");
 	return (0);
 }

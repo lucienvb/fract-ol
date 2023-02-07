@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   scroll_hook.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: lvan-bus <marvin@codam.nl>                   +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/02/07 11:30:20 by lvan-bus      #+#    #+#                 */
+/*   Updated: 2023/02/07 11:30:21 by lvan-bus      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../fractol.h"
 
 static void	scroll_mandelbrot(t_fract *fract, double y_offset)
@@ -11,13 +23,13 @@ static void	scroll_mandelbrot(t_fract *fract, double y_offset)
 
 static void	scroll_julia(t_fract *fract, double y_offset)
 {
-	fract->zoom_in -= fract->zoom_fac * y_offset;
+	fract->modif.zoom_in -= fract->modif.zoom_fac * y_offset;
 	julia_set(fract);
 }
 
 void	scroll_hook(double x_offset, double y_offset, void *param)
 {
-	t_fract *fract;
+	t_fract	*fract;
 
 	(void) x_offset;
 	fract = param;

@@ -12,24 +12,24 @@
 
 #include "../../fractol.h"
 
-static uint32_t	*get_color(t_fract *fract)
+static uint32_t	*get_color(t_color *color)
 {
-	if (fract->color == 4)
-		return (fract->rainbow);
-	else if (fract->color == 1)
-		return (fract->psyc_one);
-	else if (fract->color == 2)
-		return (fract->psyc_two);
-	else if (fract->color == 3)
-		return (fract->blue_green);
-	return (NULL);
+	if (color->color_type == 4)
+		return (color->rainbow);
+	else if (color->color_type == 1)
+		return (color->psyc_one);
+	else if (color->color_type == 2)
+		return (color->psyc_two);
+	else if (color->color_type == 3)
+		return (color->blue_green);
+	return (0);
 }
 
 static int	iter_hundred(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 {
 	uint32_t		*color;
 
-	color = get_color(fract);
+	color = get_color(&fract->color);
 	if (iterations == MAX_ITERATIONS)
 	{
 		mlx_put_pixel(fract->img, x, y, color[0]);
@@ -45,10 +45,10 @@ static int	iter_between(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 	size_t			k;
 	uint32_t		*color;
 
-	color = get_color(fract);
+	color = get_color(&fract->color);
 	i = MAX_ITERATIONS;
 	k = 1;
-	j = i - fract->color_fac;
+	j = i - fract->color.color_fac;
 	while (i > 0)
 	{
 		if (iterations < i && iterations > j)
@@ -58,7 +58,7 @@ static int	iter_between(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 		}
 		k++;
 		i = j;
-		j -= fract->color_fac;
+		j -= fract->color.color_fac;
 	}
 	return (i);
 }
@@ -68,7 +68,9 @@ void	give_diff(t_fract *fract, uint32_t x, uint32_t y, int iterations)
 	uint32_t	*color;
 	int			i;
 
-	color = get_color(fract);
+	color = get_color(&fract->color);
+	if (color == 0)
+		return ;
 	if (iter_hundred(fract, x, y, iterations) == 1)
 		return ;
 	i = iter_between(fract, x, y, iterations);
