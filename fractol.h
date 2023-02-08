@@ -22,8 +22,8 @@
 # include "./MLX42/include/MLX42/MLX42.h"
 
 // DEFINE
-# define WIDTH 1080
-# define HEIGHT 720
+# define WIDTH 600
+# define HEIGHT 600
 # define MAX_ITERATIONS 100
 # define THRESHOLD 4.0
 

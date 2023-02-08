@@ -3,3 +3,6 @@ fractol
 *.o
 .idea/
 .vscode/
+test
+unittest
+UnityExample.c

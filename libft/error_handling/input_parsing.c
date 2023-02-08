@@ -27,6 +27,8 @@ bool	input_parsing(int argc, char **argv)
 	if (!(ft_strncmp(argv[1], "mandelbrot", 11) == 0)
 		&& !(ft_strncmp(argv[1], "julia", 6) == 0))
 		return (false);
+	if (ft_strlen(argv[2]) != 1)
+		return (false);
 	if (!ft_atoi_with_overflow(argv[2], &overflow))
 		return (false);
 	if ((ft_atoi(argv[2]) < 1) || (ft_atoi(argv[2]) > 6))
